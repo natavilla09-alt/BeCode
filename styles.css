@@ -107,16 +107,20 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .nav__inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
 
-.logo { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 700; font-size: 19px; }
+.logo { --m: 32px; display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 700; font-size: 19px; }
 .logo__thin { font-weight: 500; color: var(--muted); }
 .logo__mark {
-  width: 22px; height: 22px; border-radius: 6px;
+  position: relative; flex-shrink: 0;
+  width: var(--m); height: var(--m); border-radius: calc(var(--m) * 0.24);
   background: linear-gradient(135deg, var(--blue) 0 50%, var(--red) 50% 100%);
+  color: #fff; font-size: calc(var(--m) * 0.4); line-height: 1; letter-spacing: 0;
   transition: transform 0.5s var(--ease-out);
 }
-.logo:hover .logo__mark { transform: rotate(90deg); }
-.logo--sm { font-size: 16px; }
-.logo--sm .logo__mark { width: 18px; height: 18px; }
+.logo__b, .logo__c { position: absolute; translate: -50% -50%; }
+.logo__b { left: 31%; top: 33%; }
+.logo__c { left: 69%; top: 71%; }
+.logo:hover .logo__mark { transform: rotate(-8deg) scale(1.08); }
+.logo--sm { --m: 26px; font-size: 16px; }
 
 .nav__links { display: flex; align-items: center; gap: 32px; font-size: 15px; }
 .nav__links a:not(.btn) { position: relative; color: var(--muted); transition: color 0.2s; }
