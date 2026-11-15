@@ -45,6 +45,7 @@ Contrastes medidos el 15 nov 2026: todos los pares de texto pasan AA. El único 
 - **Holograma vivo:** al terminar el video, la capa `.holo` (brillo que respira, parpadeo, líneas de escaneo, haz y chispas, en modo `screen`) sigue encendida sobre el último cuadro. Al bajar se apaga con `scrub` y fuera de pantalla se pausa.
 - **Parche de la tapa:** el generador de video volvió a dibujar el logo de Apple en la tapa cerrada. `.marco__tapa` lo cubre con el gris de la tapa hasta el segundo 1.15, cuando empieza a abrirse.
 - **Fondo de la portada:** `img/fondo-brutalista.jpg` (escritorio) y `img/fondo-brutalista-movil.jpg` (celular), una torre de concreto brutalista en blanco y negro generada en Higgsfield (GPT Image 2.6, 0.25 créditos, 15 nov 2026). Va en escala de grises, oscurecida a la izquierda y abajo para que se lea el texto, y sube más lento que la página. Encima, un triángulo rojo `#C90031` en la esquina superior derecha (`.hero__triangulo`, hecho con `clip-path`). El resto de la página es de colores planos.
+- **Retícula de la portada:** el logo, el video, el lema, los botones y los títulos de cada sección arrancan en el mismo borde izquierdo (`--edge` en `:root`, el mismo de `.contenedor`). El video llena el ancho de la retícula (hasta 1200 px) y se limita por la altura de la pantalla (`--marco-w`) para que los botones se vean sin bajar; en 1440 × 900 mide 957 px. El lema mide `--marco-fs / 10.4` para que su línea más larga casi llegue al ancho del video. Medido en 1440 × 900, 1366 × 768, 1920 × 1080 y 375 px: todo en la misma línea.
 - **Equipo partido:** a la izquierda el concepto de DiverX sobre negro; a la derecha la X en negro y los fundadores sobre rojo (como el bloque dividido de tu ejemplo). En celular se apilan.
 - **Servicios:** la tarjeta "sistema a la medida" es el bloque rojo del mosaico, con la X de luces en negro y el botón negro.
 - **Elementos propios:** X pequeña que alterna blanco y negro sobre el rojo (menú y pie); anillos y diagonales de la X (fondo de la portada); matriz de luces que dibuja la X (tarjeta 06); cortes diagonales rojos; etiquetas numeradas 01 a 06.
@@ -57,7 +58,7 @@ Contrastes medidos el 15 nov 2026: todos los pares de texto pasan AA. El único 
 - **Fotos de los fundadores:** en la sección Equipo, cambia las iniciales por `<img src="img/daniel.jpg" alt="...">` (cuadradas, de unos 300 px).
 - **Demos:** cambia cada `[DEMO REAL]` por una imagen `<img src="img/demo-1.jpg" alt="...">` y llena el giro y el nombre.
 - **Colores y letras:** en `:root`, al inicio de `css/estilos.css`.
-- Después de cambiar CSS o JS, sube el número de `?v=` en `index.html` (hoy `?v=4`) para que los navegadores no muestren la versión vieja.
+- Después de cambiar CSS o JS, sube el número de `?v=` en `index.html` (hoy CSS `?v=5` y JS `?v=4`) para que los navegadores no muestren la versión vieja.
 
 ## De dónde salió cada dato
 
