@@ -298,11 +298,11 @@
     }));
   });
 
-  // Fondo: el edificio se desplaza más lento que la página
+  // Portada: el edificio se desplaza más lento que la página
   safe(() => {
-    gsap.to('.fondo img', {
-      yPercent: -6, ease: 'none',
-      scrollTrigger: { trigger: d.body, start: 'top top', end: 'bottom bottom', scrub: true },
+    gsap.to('.hero__foto img', {
+      yPercent: -5, ease: 'none',
+      scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true },
     });
   });
 

@@ -22,21 +22,13 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&display=swap">
   <link rel="preload" as="image" href="img/laptop-inicio.jpg">
-  <link rel="preload" as="image" href="img/fondo-edificio.jpg" media="(min-width: 701px)">
-  <link rel="preload" as="image" href="img/fondo-edificio-movil.jpg" media="(max-width: 700px)">
-  <link rel="stylesheet" href="css/estilos.css?v=3">
+  <link rel="preload" as="image" href="img/fondo-brutalista.jpg" media="(min-width: 701px)">
+  <link rel="preload" as="image" href="img/fondo-brutalista-movil.jpg" media="(max-width: 700px)">
+  <link rel="stylesheet" href="css/estilos.css?v=4">
 </head>
 <body>
-
-<!-- Fondo continuo de toda la página: edificio simétrico en luz roja (Higgsfield) -->
-<div class="fondo" aria-hidden="true">
-  <picture>
-    <source media="(max-width: 700px)" srcset="img/fondo-edificio-movil.jpg">
-    <img src="img/fondo-edificio.jpg" alt="" width="1344" height="752" fetchpriority="high">
-  </picture>
-</div>
 
 <a class="saltar-contenido" href="#servicios">Saltar al contenido</a>
 
@@ -79,6 +71,14 @@
 
 <!-- ===== INICIO Zona 2 y 3: portada ===== -->
 <section class="hero" id="hero" aria-label="Portada">
+  <!-- Fondo de la portada: concreto brutalista en blanco y negro (Higgsfield) con el triángulo rojo de la marca -->
+  <div class="hero__foto" aria-hidden="true">
+    <picture>
+      <source media="(max-width: 700px)" srcset="img/fondo-brutalista-movil.jpg">
+      <img src="img/fondo-brutalista.jpg" alt="" width="1344" height="752" fetchpriority="high">
+    </picture>
+    <span class="hero__triangulo"></span>
+  </div>
   <div class="hero__fondo" aria-hidden="true"></div>
   <svg class="hero__anillos" viewBox="0 0 1000 1000" aria-hidden="true" fill="none">
     <circle cx="500" cy="500" r="300" stroke="rgba(255,51,85,.35)"/>
@@ -127,7 +127,7 @@
 <!-- ===== FIN Zona 2 y 3 ===== -->
 
 <!-- ===== INICIO Servicios ===== -->
-<section class="seccion" id="servicios">
+<section class="seccion seccion--clara" id="servicios">
   <div class="contenedor">
     <header class="seccion__head">
       <span class="ceja" data-reveal>Servicios</span>
@@ -219,7 +219,7 @@
 <!-- ===== FIN Servicios ===== -->
 
 <!-- ===== INICIO Proceso ===== -->
-<section class="seccion seccion--proceso" id="proceso">
+<section class="seccion seccion--negra seccion--proceso" id="proceso">
   <div class="corte" aria-hidden="true"></div>
   <div class="contenedor">
     <header class="seccion__head">
@@ -245,7 +245,7 @@
 <!-- ===== FIN Proceso ===== -->
 
 <!-- ===== INICIO Demos ===== -->
-<section class="seccion" id="demos">
+<section class="seccion seccion--clara" id="demos">
   <div class="contenedor">
     <header class="seccion__head">
       <span class="ceja" data-reveal>Demos</span>
@@ -275,9 +275,9 @@
 <!-- ===== FIN Demos ===== -->
 
 <!-- ===== INICIO Equipo ===== -->
-<section class="seccion seccion--equipo" id="equipo">
-  <svg class="equipo__x" viewBox="0 0 2000 1875" aria-hidden="true"><g fill="currentColor"><polygon points="236,222 490,222 893,640 697,846 236,405"/><polygon points="236,1370 1365,222 1750,222 1750,605 722,1640 236,1640"/><polygon points="1100,1325 1320,1097 1750,1512 1750,1640 1402,1640"/></g></svg>
-  <div class="contenedor equipo">
+<section class="seccion--equipo" id="equipo">
+  <!-- Bloque negro: el concepto de DiverX -->
+  <div class="equipo__bloque equipo__bloque--negro seccion--negra">
     <div class="equipo__concepto">
       <span class="ceja" data-reveal>Equipo</span>
       <h2 class="h2" data-split>No seguimos fórmulas</h2>
@@ -285,7 +285,11 @@
       <p data-reveal>Somos un estudio de innovación digital que combina creatividad, tecnología y estrategia para transformar ideas en soluciones que impulsan negocios.</p>
       <p data-reveal>Diseñamos experiencias digitales, desarrollamos sitios web, creamos identidades visuales e implementamos soluciones tecnológicas que ayudan a las empresas a conectar con sus clientes, optimizar sus procesos y alcanzar nuevas oportunidades de crecimiento.</p>
     </div>
+  </div>
 
+  <!-- Bloque rojo: la X en negro y los fundadores -->
+  <div class="equipo__bloque equipo__bloque--rojo">
+    <svg class="equipo__x" viewBox="0 0 2000 1875" aria-hidden="true"><g fill="currentColor"><polygon points="236,222 490,222 893,640 697,846 236,405"/><polygon points="236,1370 1365,222 1750,222 1750,605 722,1640 236,1640"/><polygon points="1100,1325 1320,1097 1750,1512 1750,1640 1402,1640"/></g></svg>
     <div class="fundadores">
       <article class="fundador" data-reveal>
         <!-- Para usar foto: reemplaza las iniciales por <img src="img/daniel.jpg" alt="Daniel Jesus Santiago Madrigal"> -->
@@ -303,7 +307,7 @@
 <!-- ===== FIN Equipo ===== -->
 
 <!-- ===== INICIO Contacto ===== -->
-<section class="seccion seccion--contacto" id="contacto">
+<section class="seccion seccion--negra seccion--contacto" id="contacto">
   <div class="contacto__fondo" aria-hidden="true"></div>
   <div class="contenedor contacto">
     <span class="ceja" data-reveal>Contacto</span>
@@ -355,6 +359,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js" defer></script>
-<script src="js/main.js?v=3" defer></script>
+<script src="js/main.js?v=4" defer></script>
 </body>
 </html>

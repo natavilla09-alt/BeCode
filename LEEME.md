@@ -16,26 +16,37 @@ materiales/           logo, tipografía, referencias e instrucciones (no se publ
 direccion-de-arte.html hoja de muestra aprobada (no se publica)
 ```
 
-Secciones, en orden: Portada (zonas 1 a 3), Servicios, Proceso, Demos, Equipo, Contacto y pie.
+Secciones, en orden y con su color: Portada (negra), Servicios (blanca), Proceso (negra), Demos (blanca), Equipo (partida: bloque negro | bloque rojo), Contacto (negra) y pie (negro).
 
-## Dirección de arte aprobada: "La X que se proyecta"
+## Dirección de arte: Swiss Brutalism en blanco, negro y rojo
+
+Estética de las imágenes de ejemplo de DiverX (bloques planos blanco, negro y rojo; letra negra muy gruesa; concreto brutalista en blanco y negro con un triángulo rojo). Se conserva el video de la laptop y el holograma vivo.
 
 | Token | Valor | Papel |
 |---|---|---|
-| `--red` / `--cta` | `#C90031` | Rojo oficial del logo. Botones, brillos. Letra blanca: contraste 5.9:1 (AA) |
-| `--red-hi` | `#E0003A` | Hover del botón (se aclara). Letra blanca: 5.0:1 |
-| `--red-on-dark` | `#FF3355` | Texto chico rojo sobre negro: 5.7:1 |
-| `--bg` | `#060606` | Fondo |
-| `--surface` / `--surface-2` | `#0E0E10` / `#141417` | Tarjetas |
-| `--ink` / `--muted` | `#F4F4F5` / `#9A9AA0` | Texto / texto secundario (7.6:1) |
+| `--red` / `--cta` | `#C90031` | Rojo oficial del logo: bloques, botones, triángulo. Letra blanca encima: 5.9:1 (AA) |
+| `--red-hi` | `#E0003A` | Hover del botón (se aclara) |
+| `--paper` | `#EFEFEF` | Blanco de las secciones claras (Servicios, Demos) |
+| `--black` | `#0A0A0A` | Negro de la portada, Proceso, Equipo, Contacto y pie |
+| `--accent-text` | `#FF3355` sobre negro, `#C90031` sobre blanco | Rojo para texto chico. Cambia con la sección: 5.5:1 sobre blanco, 5.5:1 sobre negro |
+| `--ink` / `--muted` | cambian por sección (`.seccion--clara`, `.seccion--negra`) | Texto y texto secundario, siempre arriba de 4.5:1 |
+| `--surface` / `--surface-2` | `#0E0E10` / `#141417` | Tarjetas, marcos de demo, teléfono y fundadores: siempre oscuros, incluso en secciones blancas |
 
-- **Letras (Google Fonts):** Archivo Black (títulos y nombre), Manrope 500 a 700 (menú, botones, párrafos), IBM Plex Mono 400 y 500 (descripciones, cejas, números).
+Contrastes medidos el 15 nov 2026: todos los pares de texto pasan AA. El único menor es el lema rojo de la portada sobre negro, 3.3:1, que es texto grande (48 px o más) y pasa con 3:1.
+
+- **Letras (Google Fonts):** una sola familia, **Archivo variable** (400 a 900, ancho 62 % a 125 %), más IBM Plex Mono 400 y 500 para descripciones, cejas y números.
+  - Titulares y lema: 900, condensado (`--st-d:68%`), mayúsculas, con `word-spacing:.14em` porque la letra condensada junta las palabras.
+  - Nombre DIVERX (barra y pie): 900, extendido (`--st-w:125%`).
+  - Texto, menú y botones: Archivo normal (400 a 700).
+  - `font-stretch` no entra en el atajo `font:`: se pone aparte, después.
 - **Forma:** radios de 4 y 8 px (esquinas filosas como la X). Los botones son cápsula, como en la web original.
 - **Movimiento:** técnico y potente, sin rebotes. Entradas `power4.out` / `cubic-bezier(.22,1,.36,1)`, 1 s, 48 px, escalonado 0.06 s. Cortinas `power3.inOut`. Lenis con inercia 0.1.
 - **Firma:** el video de la laptop se abre dentro de un marco con esquinas rojas. El marco aparece desde una línea, el menú se despliega desde el centro, una luz roja barre el marco y el lema sube por renglones. La entrada no bloquea nada: el lema y los botones aparecen en 1.5 s y el respaldo los muestra a los 3 s.
 - **Holograma vivo:** al terminar el video, la capa `.holo` (brillo que respira, parpadeo, líneas de escaneo, haz y chispas, en modo `screen`) sigue encendida sobre el último cuadro. Al bajar se apaga con `scrub` y fuera de pantalla se pausa.
 - **Parche de la tapa:** el generador de video volvió a dibujar el logo de Apple en la tapa cerrada. `.marco__tapa` lo cubre con el gris de la tapa hasta el segundo 1.15, cuando empieza a abrirse.
-- **Fondo de toda la página:** `img/fondo-edificio.jpg` (escritorio) y `img/fondo-edificio-movil.jpg` (celular), un edificio simétrico en luz roja generado en Higgsfield (GPT Image 2.6, 0.25 créditos, 15 nov 2026). Va fijo detrás de todo, oscurecido a la izquierda y abajo, y se desplaza más lento al bajar.
+- **Fondo de la portada:** `img/fondo-brutalista.jpg` (escritorio) y `img/fondo-brutalista-movil.jpg` (celular), una torre de concreto brutalista en blanco y negro generada en Higgsfield (GPT Image 2.6, 0.25 créditos, 15 nov 2026). Va en escala de grises, oscurecida a la izquierda y abajo para que se lea el texto, y sube más lento que la página. Encima, un triángulo rojo `#C90031` en la esquina superior derecha (`.hero__triangulo`, hecho con `clip-path`). El resto de la página es de colores planos.
+- **Equipo partido:** a la izquierda el concepto de DiverX sobre negro; a la derecha la X en negro y los fundadores sobre rojo (como el bloque dividido de tu ejemplo). En celular se apilan.
+- **Servicios:** la tarjeta "sistema a la medida" es el bloque rojo del mosaico, con la X de luces en negro y el botón negro.
 - **Elementos propios:** X pequeña que alterna blanco y negro sobre el rojo (menú y pie); anillos y diagonales de la X (fondo de la portada); matriz de luces que dibuja la X (tarjeta 06); cortes diagonales rojos; etiquetas numeradas 01 a 06.
 - **Librerías:** GSAP 3.13.0 (ScrollTrigger, SplitText) desde cdnjs y Lenis 1.3.11 desde jsDelivr. Sin ellas, la página se ve completa y quieta.
 
@@ -46,7 +57,7 @@ Secciones, en orden: Portada (zonas 1 a 3), Servicios, Proceso, Demos, Equipo, C
 - **Fotos de los fundadores:** en la sección Equipo, cambia las iniciales por `<img src="img/daniel.jpg" alt="...">` (cuadradas, de unos 300 px).
 - **Demos:** cambia cada `[DEMO REAL]` por una imagen `<img src="img/demo-1.jpg" alt="...">` y llena el giro y el nombre.
 - **Colores y letras:** en `:root`, al inicio de `css/estilos.css`.
-- Después de cambiar CSS o JS, sube el número de `?v=` en `index.html` (hoy `?v=3`) para que los navegadores no muestren la versión vieja.
+- Después de cambiar CSS o JS, sube el número de `?v=` en `index.html` (hoy `?v=4`) para que los navegadores no muestren la versión vieja.
 
 ## De dónde salió cada dato
 
@@ -60,7 +71,7 @@ Secciones, en orden: Portada (zonas 1 a 3), Servicios, Proceso, Demos, Equipo, C
 
 ## Por validar (lo decidió Claude)
 
-1. La letra del nombre es Archivo Black, una gratuita parecida a la de tu logotipo. Si tienes el archivo original, se cambia.
+1. La letra es Archivo (gratuita, de Google Fonts), parecida a la de tus ejemplos: condensada en los titulares y extendida en el nombre. Si tienes el archivo de la tipografía original de DiverX, se cambia.
 2. El logo X se redibujó como vector para alternar sus colores. Se ve igual que el PNG.
 3. El botón principal dice "Cotizar mi proyecto" y abre WhatsApp. Se repite en portada, proceso, contacto y en la barra del celular ("Cotizar por WhatsApp").
 4. Las descripciones cortas de cada servicio las escribió Claude.
@@ -78,7 +89,8 @@ Secciones, en orden: Portada (zonas 1 a 3), Servicios, Proceso, Demos, Equipo, C
 - [ ] Fotos de Daniel y César (hoy se ven sus iniciales).
 - [ ] Dominio propio (hoy `becode-eight.vercel.app`). Al cambiarlo, actualiza `og:image` en `index.html`.
 - [ ] El video de computadora sigue pesando 6.6 MB (el de celular ya es de 0.43 MB). Para bajarlo a unos 2 MB: `ffmpeg -i video/hero-laptop.mp4 -an -vf "scale=1280:-2" -c:v libx264 -crf 24 -preset slow -pix_fmt yuv420p -movflags +faststart video/hero-laptop-pc.mp4` y cambiar el `data-src` del video en `index.html`. ffmpeg quedó instalado en esta computadora.
-- [ ] Higgsfield: queda 1 crédito. Otro video de 5 s cuesta 8.75 y una imagen 0.25.
+- [ ] Higgsfield: quedan 0.75 créditos. Otro video de 5 s cuesta 8.75 y una imagen 0.25.
+- [ ] La imagen para compartir en redes (`img/og-imagen.jpg`) conserva el estilo anterior (cuadro del video con el lema en Arial Black). Conviene rehacerla con Archivo y el fondo blanco, negro y rojo.
 - [ ] Si se genera otro video de la laptop, pedir de nuevo que no aparezca ningún logo en la tapa y quitar `.marco__tapa` si ya no hace falta.
 
 ## Cómo publicar

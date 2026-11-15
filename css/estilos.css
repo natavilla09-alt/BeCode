@@ -1,21 +1,28 @@
 /* =========================================================
    DiverX · estilos
-   Dirección de arte aprobada: "La X que se proyecta"
+   Dirección de arte: Swiss Brutalism en blanco, negro y rojo
+   (antes "La X que se proyecta": se conserva el video y el holograma)
    ========================================================= */
 
 :root{
-  /* Color: identidad DiverX */
+  /* Color: blanco, negro y el rojo del logo */
   --red:#C90031;          /* rojo oficial del logo */
   --red-hi:#E0003A;       /* hover del botón: se aclara */
   --red-on-dark:#FF3355;  /* rojo para texto chico sobre negro */
+  --paper:#EFEFEF;        /* blanco de las secciones claras */
+  --black:#0A0A0A;        /* negro de las secciones oscuras */
   --cta:#C90031; --cta-ink:#FFFFFF;
-  --bg:#060606; --surface:#0E0E10; --surface-2:#141417;
-  --ink:#F4F4F5; --muted:#9A9AA0;
+  --bg:#0A0A0A; --surface:#0E0E10; --surface-2:#141417;
+  --ink:#F4F4F2; --muted:#9A9AA0;
   --line:rgba(255,255,255,.10); --line-red:rgba(201,0,49,.45);
-  /* Tipografía */
-  --font-display:"Archivo Black",system-ui,sans-serif;
-  --font-ui:"Manrope",system-ui,sans-serif;
+  --btn-line:rgba(255,255,255,.28);   /* borde del botón fantasma */
+  --accent-text:#FF3355;              /* rojo para texto chico: cambia según el fondo */
+  /* Tipografía: Archivo variable. El ancho (stretch) separa titulares de nombre y texto */
+  --font-display:"Archivo",system-ui,sans-serif;   /* titulares: 900, condensado */
+  --font-ui:"Archivo",system-ui,sans-serif;        /* texto, menú y botones */
   --font-mono:"IBM Plex Mono",ui-monospace,monospace;
+  --st-d:68%;     /* ancho de los titulares (condensado) */
+  --st-w:125%;    /* ancho del nombre DIVERX (extendido) */
   /* Forma: esquinas filosas como la X */
   --r-sm:4px; --r-md:8px; --r-pill:999px;
   /* Movimiento: técnico y potente, sin rebotes */
@@ -58,19 +65,28 @@ html.lenis,html.lenis body{height:auto}
 .btn--cta{background:var(--cta);color:var(--cta-ink)}
 @media (hover:hover){.btn--cta:hover{background:var(--red-hi);box-shadow:0 12px 34px -10px rgba(255,51,85,.8);transform:translateY(-2px)}}
 .btn--cta:active{transform:scale(.97)}
-.btn--ghost{border-color:rgba(255,255,255,.22);color:var(--ink);background:rgba(255,255,255,.02)}
-@media (hover:hover){.btn--ghost:hover{border-color:#fff;transform:translateY(-2px)}}
+.btn--ghost{border-color:var(--btn-line);color:var(--ink);background:transparent}
+@media (hover:hover){.btn--ghost:hover{border-color:var(--ink);transform:translateY(-2px)}}
 .btn--cta:active{background:var(--red-hi)}
-.btn--ghost:active{border-color:#fff;transform:scale(.97)}
+.btn--ghost:active{border-color:var(--ink);transform:scale(.97)}
 .btn--sm{min-height:44px;padding:12px 20px;font-size:14px}
 
 /* ---------- Ceja y títulos ---------- */
-.ceja{display:inline-flex;align-items:center;gap:10px;font:500 12px/1 var(--font-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--red-on-dark)}
+.ceja{display:inline-flex;align-items:center;gap:10px;font:500 12px/1 var(--font-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text)}
 .ceja::before{content:"";width:12px;height:12px;background:var(--red);clip-path:polygon(0 0,30% 0,100% 70%,100% 100%,70% 100%,0 30%)}
-.h2{margin-top:14px;font:400 clamp(32px,5.4vw,64px)/.98 var(--font-display);text-transform:uppercase;letter-spacing:-.01em;max-width:18ch}
-.h2--grande{font-size:clamp(36px,7vw,92px);max-width:16ch}
+.h2{margin-top:14px;font:900 clamp(46px,8.4vw,116px)/.95 var(--font-display);font-stretch:var(--st-d);text-transform:uppercase;letter-spacing:-.005em;max-width:14ch}
+.h2--grande{font-size:clamp(48px,10.5vw,140px);max-width:12ch}
+
+/* ---------- Colores por sección: blanco, negro y rojo ---------- */
+.seccion--clara{--ink:#0A0A0A;--muted:#46464C;--line:rgba(10,10,10,.16);--btn-line:rgba(10,10,10,.38);--accent-text:#C90031;background:var(--paper);color:var(--ink)}
+.seccion--negra{--ink:#F4F4F2;--muted:#9A9AA0;--line:rgba(255,255,255,.10);--btn-line:rgba(255,255,255,.28);--accent-text:#FF3355;background:var(--black);color:var(--ink)}
+/* Lo que siempre es oscuro (tarjetas, marcos, teléfono), aunque la sección sea blanca */
+.tarjeta,.fundador,.canales a,.demo__pantalla,.telefono{--ink:#F4F4F2;--muted:#9A9AA0;--line:rgba(255,255,255,.10);--accent-text:#FF3355;color:var(--ink)}
+/* La letra condensada junta mucho las palabras: un poco más de espacio entre ellas */
+.h2,.lema,.tarjeta h3,.paso h3,.demo__nombre,.fundador h3{word-spacing:.14em}
 /* Aire para SplitText con máscara: las letras no se recortan */
 .h2 .linea-split{padding-bottom:.12em;margin-bottom:-.12em}
+.linea-split-mask{overflow-clip-margin:.16em}  /* los acentos de las mayúsculas (É, Ó, Ú) no se cortan */
 
 /* =========================================================
    ZONA 1 · Barra superior
@@ -81,7 +97,7 @@ html.lenis,html.lenis body{height:auto}
 .marca__x rect{fill:var(--red)}
 .marca__x g{fill:#fff;animation:xAlterna 2.4s steps(1,end) infinite}
 @keyframes xAlterna{0%{fill:#fff}50%{fill:#000}100%{fill:#fff}}
-.marca__nombre{font:400 20px/1 var(--font-display);letter-spacing:.01em;text-transform:uppercase}
+.marca__nombre{font:900 18px/1 var(--font-display);font-stretch:var(--st-w);letter-spacing:.01em;text-transform:uppercase}
 
 .notch{position:absolute;left:50%;top:14px;translate:-50% 0;display:flex;gap:4px;padding:6px;border-radius:var(--r-pill);background:rgba(18,18,20,.45);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
 .notch a{position:relative;isolation:isolate;padding:10px 16px;border-radius:var(--r-pill);font:600 13px/1 var(--font-ui);letter-spacing:.06em;text-transform:uppercase;color:#fff;transition:text-shadow var(--t-hover) var(--ease)}
@@ -109,7 +125,7 @@ html.lenis,html.lenis body{height:auto}
   /* Sin JS el menú se ve como lista dentro de la barra */
   .notch{position:fixed;inset:0;left:0;top:0;translate:none;z-index:55;flex-direction:column;justify-content:center;align-items:stretch;gap:6px;padding:96px var(--gutter) 40px;border-radius:0;border:0;background:rgba(6,6,6,.96);visibility:hidden;opacity:0;transition:opacity .4s var(--ease),visibility .4s}
   .notch.is-open{visibility:visible;opacity:1}
-  .notch a{padding:16px 6px;font:400 clamp(28px,8vw,40px)/1 var(--font-display);border-bottom:1px solid var(--line);border-radius:0}
+  .notch a{padding:14px 6px;font:900 clamp(38px,11vw,56px)/1 var(--font-display);font-stretch:var(--st-d);border-bottom:1px solid var(--line);border-radius:0}
   .notch a::before,.notch a::after{display:none}
   .no-js .notch{position:static;visibility:visible;opacity:1;background:none;padding:0;flex-direction:row;flex-wrap:wrap}
   .no-js .notch a{font:600 12px/1 var(--font-ui);padding:8px;border:0}
@@ -124,17 +140,17 @@ html.lenis,html.lenis body{height:auto}
   background:radial-gradient(45% 40% at 50% 42%,rgba(201,0,49,.30),transparent 70%)}
 .hero__anillos{position:absolute;left:50%;top:44%;width:min(1100px,180vw);aspect-ratio:1;translate:-50% -50%;z-index:-1;opacity:.3;pointer-events:none}
 
-/* ---------- Fondo continuo de la página (referencia: luz roja que entra por la derecha) ---------- */
-/* Altura fija (lvh): al esconderse la barra del navegador en iPhone, la imagen no se reescala ni salta */
-.fondo{position:fixed;top:0;left:0;width:100%;height:100vh;height:100lvh;z-index:-1;pointer-events:none;overflow:hidden;background:var(--bg)}
-.fondo img{position:absolute;left:0;top:-4%;width:100%;height:112%;object-fit:cover;object-position:70% 50%;will-change:transform}
-.fondo::after{content:"";position:absolute;inset:0;background:
-  linear-gradient(90deg,#060606 0%,rgba(6,6,6,.9) 20%,rgba(6,6,6,.5) 48%,rgba(6,6,6,.3) 72%,rgba(6,6,6,.4) 100%),
-  linear-gradient(0deg,rgba(6,6,6,.85) 0%,transparent 38%),
-  linear-gradient(180deg,rgba(6,6,6,.65) 0%,transparent 22%)}
+/* ---------- Fondo de la portada: concreto brutalista en blanco y negro + triángulo rojo ---------- */
+.hero__foto{position:absolute;inset:0;z-index:-3;overflow:hidden;background:var(--black);pointer-events:none}
+.hero__foto img{position:absolute;left:0;top:-6%;width:100%;height:112%;object-fit:cover;object-position:75% 40%;filter:grayscale(1) contrast(1.12) brightness(.82);will-change:transform}
+.hero__foto::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(90deg,#0A0A0A 0%,rgba(10,10,10,.92) 24%,rgba(10,10,10,.55) 56%,rgba(10,10,10,.28) 100%),
+  linear-gradient(0deg,#0A0A0A 0%,rgba(10,10,10,.6) 22%,transparent 46%)}
+.hero__triangulo{position:absolute;top:0;right:0;z-index:1;width:min(44vw,640px);aspect-ratio:1/.92;background:var(--red);clip-path:polygon(0 0,100% 0,100% 100%)}
 @media (max-width:700px){
-  .fondo img{object-position:center top}
-  .fondo::after{background:linear-gradient(180deg,rgba(6,6,6,.55) 0%,rgba(6,6,6,.72) 45%,rgba(6,6,6,.88) 100%)}
+  .hero__foto img{object-position:center 30%}
+  .hero__foto::after{background:linear-gradient(180deg,rgba(10,10,10,.5) 0%,rgba(10,10,10,.72) 45%,#0A0A0A 100%)}
+  .hero__triangulo{width:70vw}
 }
 
 /* ---------- Holograma vivo sobre el último cuadro ---------- */
@@ -167,7 +183,8 @@ html.lenis,html.lenis body{height:auto}
 @keyframes holoScan{from{background-position:0 0}to{background-position:0 -28px}}
 @keyframes holoChispa{0%{bottom:0;opacity:0}15%{opacity:1}100%{bottom:100%;opacity:0}}
 @keyframes holoParpadeo{0%{opacity:1}46%{opacity:1}47%{opacity:.62}48%{opacity:1}73%{opacity:.85}74%{opacity:1}}
-.marco{position:relative;width:min(980px,100%,calc((100svh - 400px) * 16 / 9));min-width:min(100%,320px);aspect-ratio:16/9;border-radius:var(--r-md);overflow:hidden;background:#000;border:1px solid var(--line-red);box-shadow:0 40px 120px -40px rgba(201,0,49,.6)}
+.hero{--marco-w:min(980px,calc(100vw - 2 * var(--gutter)),calc((100svh - 410px) * 16 / 9))}
+.marco{position:relative;width:var(--marco-w);min-width:min(100%,320px);aspect-ratio:16/9;border-radius:var(--r-md);overflow:hidden;background:#000;border:1px solid var(--line-red);box-shadow:0 40px 120px -40px rgba(201,0,49,.6)}
 .marco video,.marco img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .marco__final{opacity:0;transition:opacity .3s}
 .marco__tapa{position:absolute;left:50%;top:61.1%;width:13%;height:8%;translate:-50% -50%;z-index:1;pointer-events:none;
@@ -182,10 +199,12 @@ html.lenis,html.lenis body{height:auto}
 .esquina--bl{bottom:10px;left:10px;border-right:0;border-top:0}
 .esquina--br{bottom:10px;right:10px;border-left:0;border-top:0}
 .marco__barrido{position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(100deg,transparent 35%,rgba(255,51,85,.35) 50%,transparent 65%);transform:translateX(-120%)}
-.lema{text-align:center;font:400 clamp(28px,5.4vw,64px)/.95 var(--font-display);text-transform:uppercase;letter-spacing:-.01em}
+/* Lema y botones alineados a la izquierda del marco del video (retícula Swiss) */
+.lema{width:var(--marco-w);min-width:min(100%,320px);text-align:left;font:900 max(34px,calc(var(--marco-w) / 11.6))/.9 var(--font-display);font-stretch:var(--st-d);text-transform:uppercase;letter-spacing:-.005em}
 .lema span{display:block}
-.lema .rojo{color:var(--red-on-dark)}
-.acciones{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
+.lema .rojo{color:var(--red)}
+.acciones{width:var(--marco-w);min-width:min(100%,320px);display:flex;flex-wrap:wrap;justify-content:flex-start;gap:14px}
+.acciones--contacto{width:auto;justify-content:center}
 
 /* =========================================================
    Secciones
@@ -206,14 +225,25 @@ html.lenis,html.lenis body{height:auto}
   .tarjeta:hover::before{opacity:1}
 }
 .tarjeta:active{border-color:rgba(255,51,85,.7)}
-.tarjeta__num{position:absolute;top:18px;right:20px;font:500 11px/1 var(--font-mono);letter-spacing:.12em;color:var(--red-on-dark)}
-.tarjeta h3{font:400 clamp(20px,2vw,24px)/1.05 var(--font-display);text-transform:uppercase;max-width:16ch}
+.tarjeta__num{position:absolute;top:18px;right:20px;font:500 11px/1 var(--font-mono);letter-spacing:.12em;color:var(--accent-text)}
+.tarjeta h3{font:900 clamp(28px,2.7vw,36px)/.92 var(--font-display);font-stretch:var(--st-d);text-transform:uppercase;max-width:14ch}
 .tarjeta p{font:400 14px/1.7 var(--font-mono);color:var(--muted);max-width:44ch}
 .tarjeta__arte{height:150px;margin:0 -6px 8px;display:grid;place-items:center}
 .tarjeta__link{margin-top:auto;padding-top:10px;display:inline-flex;align-items:center;gap:8px;min-height:44px;font:600 14px/1 var(--font-ui);color:var(--ink)}
-.tarjeta__link span{color:var(--red-on-dark);transition:transform var(--t-hover) var(--ease)}
+.tarjeta__link span{color:var(--accent-text);transition:transform var(--t-hover) var(--ease)}
 @media (hover:hover){.tarjeta__link:hover span{transform:translateX(4px)}}
 .tarjeta--sistema .btn{margin-top:auto;align-self:flex-start}
+
+/* La tarjeta "sistema a la medida" es el bloque rojo del mosaico, con la X en negro (como en tu ejemplo) */
+.tarjeta--sistema{background:var(--red);border-color:var(--red);--muted:rgba(255,255,255,.92);--accent-text:#fff}
+.tarjeta--sistema::before{display:none}
+.tarjeta--sistema .btn--cta{background:var(--black);color:#fff}
+.tarjeta--sistema .matriz span{background:rgba(0,0,0,.28)}
+.tarjeta--sistema .matriz span.on{background:var(--black);box-shadow:none}
+@media (hover:hover){
+  .tarjeta--sistema:hover{border-color:var(--black)}
+  .tarjeta--sistema .btn--cta:hover{background:#fff;color:var(--black);box-shadow:none}
+}
 
 /* Arte de cada tarjeta, hecho con piezas de la marca */
 .navegador{position:relative;width:min(220px,90%);height:130px;border:1px solid var(--line-red);border-radius:var(--r-sm);background:rgba(6,6,6,.6);box-shadow:0 0 40px -10px rgba(201,0,49,.6)}
@@ -241,7 +271,7 @@ html.lenis,html.lenis body{height:auto}
 /* Agente IA: teléfono con chat (se conserva de la web original) */
 .ia{flex:1;display:grid;grid-template-columns:1fr minmax(0,320px);gap:28px;align-items:center}
 .ia__texto{display:flex;flex-direction:column;gap:12px;height:100%;justify-content:center}
-.ia__texto h3{font-size:clamp(26px,3vw,40px)}
+.ia__texto h3{font-size:clamp(38px,4.4vw,64px)}
 .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
 .tab{min-height:44px;padding:8px 14px;border-radius:var(--r-pill);background:transparent;border:1px solid var(--line);font:600 13px/1 var(--font-ui);color:var(--muted);cursor:pointer;transition:all .25s var(--ease)}
 @media (hover:hover){.tab:hover{color:var(--ink);border-color:rgba(255,255,255,.3)}}
@@ -265,16 +295,16 @@ html.lenis,html.lenis body{height:auto}
 @keyframes parpadeo{50%{opacity:1}}
 
 /* ---------- Proceso: línea de luz con nodos ---------- */
-.seccion--proceso{overflow:hidden;background:linear-gradient(180deg,transparent,rgba(201,0,49,.06) 50%,transparent)}
+.seccion--proceso{overflow:hidden}
 .corte{position:absolute;left:-10%;right:-10%;top:0;height:3px;background:linear-gradient(90deg,transparent,var(--red),transparent);transform:rotate(-2deg);opacity:.7}
 .linea{list-style:none;margin:0;padding:0;position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:20px}
 .linea__trazo{position:absolute;left:28px;right:28px;top:27px;height:2px;background:rgba(255,255,255,.08);pointer-events:none}
 .linea__luz{position:absolute;inset:0;background:linear-gradient(90deg,var(--red),var(--red-on-dark));box-shadow:0 0 18px rgba(255,51,85,.8);transform-origin:left center}
 .js .linea__luz{transform:scaleX(0)}
 .paso{position:relative;display:flex;flex-direction:column;gap:10px}
-.paso__nodo{position:relative;z-index:1;display:grid;place-items:center;width:56px;height:56px;border-radius:var(--r-sm);background:var(--bg);border:1px solid var(--line-red);font:500 14px/1 var(--font-mono);color:var(--red-on-dark);transition:background .4s var(--ease),color .4s var(--ease),box-shadow .4s var(--ease)}
+.paso__nodo{position:relative;z-index:1;display:grid;place-items:center;width:56px;height:56px;border-radius:var(--r-sm);background:var(--bg);border:1px solid var(--line-red);font:500 14px/1 var(--font-mono);color:var(--accent-text);transition:background .4s var(--ease),color .4s var(--ease),box-shadow .4s var(--ease)}
 .paso.is-on .paso__nodo,.no-js .paso__nodo{background:var(--red);color:#fff;box-shadow:0 0 26px rgba(255,51,85,.7)}
-.paso h3{margin-top:8px;font:400 18px/1.1 var(--font-display);text-transform:uppercase}
+.paso h3{margin-top:8px;font:900 clamp(24px,2.1vw,30px)/.95 var(--font-display);font-stretch:var(--st-d);text-transform:uppercase}
 .paso p{font:400 13.5px/1.65 var(--font-mono);color:var(--muted)}
 
 /* ---------- Demos ---------- */
@@ -285,13 +315,17 @@ html.lenis,html.lenis body{height:auto}
   radial-gradient(60% 60% at 50% 60%,rgba(201,0,49,.18),transparent 70%),var(--surface);display:grid;place-items:center;padding:40px 16px 16px;text-align:center;overflow:hidden}
 .demo__pantalla::before{content:"";position:absolute;top:11px;left:12px;width:6px;height:6px;border-radius:50%;background:var(--red);box-shadow:10px 0 0 rgba(255,255,255,.25),20px 0 0 rgba(255,255,255,.25)}
 .demo figcaption{display:flex;flex-direction:column;gap:6px}
-.demo__giro{font:500 11px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--red-on-dark)}
-.demo__nombre{font:400 18px/1.1 var(--font-display);text-transform:uppercase}
+.demo__giro{font:500 11px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent-text)}
+.demo__nombre{font:900 clamp(24px,2.3vw,32px)/.95 var(--font-display);font-stretch:var(--st-d);text-transform:uppercase}
 
-/* ---------- Equipo ---------- */
-.seccion--equipo{overflow:hidden}
-.equipo__x{position:absolute;right:-8%;top:50%;width:min(720px,90vw);translate:0 -50%;color:var(--red);opacity:.07;pointer-events:none}
-.equipo{position:relative;display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(40px,6vw,88px);align-items:center}
+/* ---------- Equipo: bloque negro | bloque rojo con la X en negro (como en tu ejemplo) ---------- */
+.seccion--equipo{position:relative;display:grid;grid-template-columns:56fr 44fr;overflow:hidden}
+.equipo__bloque{position:relative;padding:var(--section-y) var(--gutter)}
+.equipo__bloque--negro{padding-left:max(var(--gutter),calc((100vw - var(--maxw)) / 2));padding-right:clamp(32px,5vw,72px)}
+.equipo__bloque--rojo{display:flex;flex-direction:column;justify-content:center;gap:32px;background:var(--red);--ink:#fff;--muted:rgba(255,255,255,.92);--accent-text:#fff;color:var(--ink);
+  padding-left:clamp(32px,5vw,72px);padding-right:max(var(--gutter),calc((100vw - var(--maxw)) / 2))}
+.equipo__x{width:clamp(110px,14vw,200px);color:var(--black);flex:none;pointer-events:none}
+@media (hover:hover){.equipo__bloque--rojo .fundador:hover{border-color:#fff}}
 .equipo__concepto{display:flex;flex-direction:column;gap:18px}
 .equipo__concepto p{color:var(--muted);max-width:58ch}
 .equipo__concepto .equipo__frase{color:var(--ink);font:700 clamp(19px,2vw,23px)/1.45 var(--font-ui)}
@@ -299,14 +333,14 @@ html.lenis,html.lenis body{height:auto}
 .fundador{display:flex;align-items:center;gap:20px;padding:22px;border-radius:var(--r-md);background:var(--surface);border:1px solid rgba(201,0,49,.28);transition:border-color var(--t-hover) var(--ease),transform var(--t-hover) var(--ease)}
 @media (hover:hover){.fundador:hover{border-color:rgba(255,51,85,.7);transform:translateY(-3px)}}
 .fundador:active{border-color:rgba(255,51,85,.7)}
-.fundador__avatar{width:72px;height:72px;flex:none;display:grid;place-items:center;border-radius:var(--r-md);background:var(--red);font:400 24px/1 var(--font-display);color:#fff;box-shadow:0 0 30px -6px rgba(255,51,85,.6)}
+.fundador__avatar{width:72px;height:72px;flex:none;display:grid;place-items:center;border-radius:var(--r-md);background:var(--red);font:900 24px/1 var(--font-display);font-stretch:var(--st-d);color:#fff;box-shadow:0 0 30px -6px rgba(255,51,85,.6)}
 .fundador__avatar img{width:100%;height:100%;object-fit:cover;border-radius:inherit}
-.fundador h3{font:400 18px/1.2 var(--font-display);text-transform:uppercase}
-.fundador p{margin-top:4px;font:500 12px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--red-on-dark)}
+.fundador h3{font:900 clamp(22px,2vw,28px)/.95 var(--font-display);font-stretch:var(--st-d);text-transform:uppercase}
+.fundador p{margin-top:6px;font:500 12px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent-text)}
 
 /* ---------- Contacto ---------- */
 .seccion--contacto{overflow:hidden;text-align:center}
-.contacto__fondo{position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(50% 55% at 50% 55%,rgba(201,0,49,.32),transparent 70%)}
+.contacto__fondo{display:none}  /* sección plana: sin brillo */
 .contacto{display:flex;flex-direction:column;align-items:center;gap:18px}
 .contacto .h2{margin-inline:auto}
 .contacto__texto{color:var(--muted);font-size:17px}
@@ -315,7 +349,7 @@ html.lenis,html.lenis body{height:auto}
 .canales a{display:flex;flex-direction:column;gap:8px;padding:20px 16px;min-height:44px;border-radius:var(--r-md);border:1px solid var(--line);background:rgba(14,14,16,.7);transition:border-color var(--t-hover) var(--ease),transform var(--t-hover) var(--ease),box-shadow var(--t-hover) var(--ease)}
 @media (hover:hover){.canales a:hover{border-color:var(--red-on-dark);transform:translateY(-3px);box-shadow:0 14px 30px -18px rgba(255,51,85,.8)}}
 .canales a:active{border-color:var(--red-on-dark);background:rgba(201,0,49,.12)}
-.canales__tipo{font:500 11px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--red-on-dark)}
+.canales__tipo{font:500 11px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent-text)}
 .canales__dato{font:600 14px/1.3 var(--font-ui);overflow-wrap:anywhere}
 
 /* ---------- Pie ---------- */
@@ -342,7 +376,8 @@ html.lenis,html.lenis body{height:auto}
   .linea{grid-template-columns:repeat(3,1fr);row-gap:40px}
   .linea__trazo{display:none}
   .demos{grid-template-columns:repeat(2,1fr)}
-  .equipo{grid-template-columns:1fr}
+  .seccion--equipo{grid-template-columns:1fr}
+  .equipo__bloque--negro,.equipo__bloque--rojo{padding-left:var(--gutter);padding-right:var(--gutter)}
   .canales{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:700px){
@@ -350,7 +385,7 @@ html.lenis,html.lenis body{height:auto}
   .seccion__head{margin-bottom:28px}
   .hero{justify-content:center;padding-top:96px;padding-bottom:32px}
   .marca__nombre{font-size:18px}
-  .lema{font-size:clamp(28px,9vw,44px)}
+  .lema{font-size:clamp(44px,15vw,70px)}
   .acciones .btn{flex:1 1 100%}
   /* Servicios compactos */
   .bento{grid-template-columns:1fr;grid-template-areas:none}
@@ -358,7 +393,8 @@ html.lenis,html.lenis body{height:auto}
   .tarjeta{padding:22px;gap:8px}
   .tarjeta__arte{height:96px;margin-bottom:4px}
   .tarjeta__arte>*{transform:scale(.68)}
-  .tarjeta h3{font-size:20px}
+  .tarjeta h3{font-size:28px}
+  .ia__texto h3{font-size:42px}
   .tarjeta p{font-size:13.5px}
   .ia{grid-template-columns:1fr}
   .telefono__chat{min-height:440px}
