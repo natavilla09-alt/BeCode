@@ -1,322 +1,326 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-MX" class="no-js">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BeCode — Webs, Agentes IA y Menús Interactivos</title>
-  <meta name="description" content="Páginas web, agentes de IA para WhatsApp que responden cotizaciones 24/7 y menús interactivos para restaurantes y cafeterías." />
-  <meta name="theme-color" content="#07080a" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>DiverX · Mentes creativas. Soluciones digitales.</title>
+  <meta name="description" content="Estudio de innovación digital en México: páginas web, tarjetas de lealtad digitales, tarjetas NFC para reseñas de Google, agentes de IA 24/7 y diseño para redes sociales.">
+  <meta name="theme-color" content="#060606">
+  <script>document.documentElement.className=document.documentElement.className.replace('no-js','js');</script>
+
+  <!-- Compartir en redes -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="DiverX">
+  <meta property="og:title" content="DiverX · Mentes creativas. Soluciones digitales.">
+  <meta property="og:description" content="Páginas web, tarjetas NFC, lealtad digital, agentes de IA 24/7 y diseño para redes. Cotiza por WhatsApp.">
+  <meta property="og:image" content="https://becode-eight.vercel.app/img/og-imagen.jpg">
+  <meta property="og:locale" content="es_MX">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="img/diverx-x.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@500;600;700&display=swap">
+  <link rel="preload" as="image" href="img/laptop-inicio.jpg">
+  <link rel="stylesheet" href="css/estilos.css?v=1">
 </head>
 <body>
 
-  <div class="progress" id="progress" aria-hidden="true"></div>
+<a class="saltar-contenido" href="#servicios">Saltar al contenido</a>
 
-  <!-- NAV -->
-  <header class="nav" id="top">
-    <div class="container nav__inner">
-      <a href="#top" class="logo" aria-label="BeCode, inicio">
-        <span class="logo__mark" aria-hidden="true"><span class="logo__b">B</span><span class="logo__c">C</span></span>
-        <span>Be<span class="logo__thin">Code</span></span>
-      </a>
+<!-- ===== INICIO Zona 1: barra superior ===== -->
+<header class="top" id="top">
+  <a href="#top" class="marca" aria-label="DiverX, inicio" data-in>
+    <svg class="marca__x" viewBox="0 0 2000 1875" aria-hidden="true">
+      <rect width="2000" height="1875"/>
+      <g><polygon points="236,222 490,222 893,640 697,846 236,405"/><polygon points="236,1370 1365,222 1750,222 1750,605 722,1640 236,1640"/><polygon points="1100,1325 1320,1097 1750,1512 1750,1640 1402,1640"/></g>
+    </svg>
+    <span class="marca__nombre">DiverX</span>
+  </a>
 
-      <nav class="nav__links" id="navLinks" aria-label="Principal">
-        <a href="#servicios">Servicios</a>
-        <a href="#agentes">Agentes IA</a>
-        <a href="#proceso">Proceso</a>
-        <a href="#equipo">Equipo</a>
-        <a href="#contacto" class="btn btn--sm btn--ghost">Contacto</a>
-      </nav>
+  <nav class="notch" id="notch" aria-label="Secciones" data-in>
+    <a href="#servicios">Servicios</a>
+    <a href="#proceso">Proceso</a>
+    <a href="#demos">Demos</a>
+    <a href="#equipo">Equipo</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
 
-      <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
-        <span></span><span></span>
-      </button>
+  <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="notch" data-in>
+    <span class="menu-btn__txt">Menú</span><span class="menu-btn__lineas" aria-hidden="true"><i></i><i></i></span>
+  </button>
+</header>
+<!-- ===== FIN Zona 1 ===== -->
+
+<main id="contenido">
+
+<!-- ===== INICIO Zona 2 y 3: portada ===== -->
+<section class="hero" id="hero" aria-label="Portada">
+  <div class="hero__fondo" aria-hidden="true"></div>
+  <svg class="hero__anillos" viewBox="0 0 1000 1000" aria-hidden="true" fill="none">
+    <circle cx="500" cy="500" r="300" stroke="rgba(255,51,85,.35)"/>
+    <circle cx="500" cy="500" r="380" stroke="rgba(255,255,255,.08)"/>
+    <circle cx="500" cy="500" r="455" stroke="rgba(255,51,85,.18)" stroke-dasharray="2 10"/>
+    <line x1="80" y1="80" x2="920" y2="920" stroke="rgba(255,51,85,.22)"/>
+    <line x1="920" y1="80" x2="80" y2="920" stroke="rgba(255,255,255,.07)"/>
+    <line x1="500" y1="20" x2="500" y2="980" stroke="rgba(255,255,255,.05)"/>
+  </svg>
+
+  <div class="marco" id="marco" data-in>
+    <video id="laptop" muted playsinline preload="auto" poster="img/laptop-inicio.jpg" aria-label="Una laptop gris se abre y proyecta el logo de DiverX como holograma">
+      <source src="video/hero-laptop.mp4" type="video/mp4">
+    </video>
+    <img class="marco__final" src="img/laptop-final.jpg" alt="" aria-hidden="true" width="1280" height="720">
+    <span class="esquina esquina--tl"></span><span class="esquina esquina--tr"></span>
+    <span class="esquina esquina--bl"></span><span class="esquina esquina--br"></span>
+    <span class="marco__barrido" aria-hidden="true"></span>
+  </div>
+
+  <h1 class="lema" data-in><span>Mentes creativas.</span> <span class="rojo">Soluciones digitales.</span></h1>
+
+  <div class="acciones" data-in>
+    <a class="btn btn--cta" data-cta-start data-wa="Hola DiverX, quiero cotizar un proyecto." href="https://wa.me/529381398816" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.9A8 8 0 1 1 21 12Z"/></svg>
+      Cotizar mi proyecto
+    </a>
+    <a class="btn btn--ghost" href="#servicios">Ver servicios</a>
+  </div>
+
+  <button class="saltar" id="saltar" type="button">Saltar intro</button>
+</section>
+<!-- ===== FIN Zona 2 y 3 ===== -->
+
+<!-- ===== INICIO Servicios ===== -->
+<section class="seccion" id="servicios">
+  <div class="contenedor">
+    <header class="seccion__head">
+      <span class="ceja" data-reveal>Servicios</span>
+      <h2 class="h2" data-split>Lo que construimos para tu negocio</h2>
+    </header>
+
+    <div class="bento">
+      <!-- 01 Web -->
+      <article class="tarjeta tarjeta--web" data-reveal>
+        <span class="tarjeta__num">01</span>
+        <div class="tarjeta__arte" aria-hidden="true">
+          <div class="navegador"><i></i><i></i><i></i><span class="navegador__barra"></span><span class="navegador__bloque"></span><span class="navegador__linea"></span><span class="navegador__linea navegador__linea--corta"></span></div>
+        </div>
+        <h3>Diseño de páginas web</h3>
+        <p>Sitios rápidos y hechos para celular que convierten visitas en mensajes de clientes.</p>
+        <a class="tarjeta__link" data-wa="Hola DiverX, quiero cotizar diseño de página web. ¿Qué información necesitan?" href="https://wa.me/529381398816" target="_blank" rel="noopener">Cotizar web <span aria-hidden="true">→</span></a>
+      </article>
+
+      <!-- 04 Agentes IA (tarjeta grande con el teléfono) -->
+      <article class="tarjeta tarjeta--ia" data-reveal>
+        <span class="tarjeta__num">04</span>
+        <div class="ia">
+          <div class="ia__texto">
+            <h3>Agentes de IA 24/7</h3>
+            <p>Responden cotizaciones, agendan citas y atienden por WhatsApp a cualquier hora, mientras tú duermes.</p>
+            <div class="tabs" role="tablist" aria-label="Ejemplos por giro">
+              <button class="tab is-active" role="tab" aria-selected="true" data-chat="constructora">Constructoras</button>
+              <button class="tab" role="tab" aria-selected="false" data-chat="solar">Paneles solares</button>
+              <button class="tab" role="tab" aria-selected="false" data-chat="clinica">Clínicas</button>
+            </div>
+            <a class="tarjeta__link" data-wa="Hola DiverX, quiero cotizar un agente de IA 24/7. ¿Qué información necesitan?" href="https://wa.me/529381398816" target="_blank" rel="noopener">Cotizar agente IA <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="telefono" aria-live="polite">
+            <div class="telefono__top">
+              <span class="telefono__avatar" aria-hidden="true">
+                <svg viewBox="0 0 2000 1875"><rect width="2000" height="1875" fill="#C90031"/><g fill="#fff"><polygon points="236,222 490,222 893,640 697,846 236,405"/><polygon points="236,1370 1365,222 1750,222 1750,605 722,1640 236,1640"/><polygon points="1100,1325 1320,1097 1750,1512 1750,1640 1402,1640"/></g></svg>
+              </span>
+              <div><strong id="chatName">Asistente · Constructora</strong><span class="telefono__estado">en línea</span></div>
+            </div>
+            <div class="telefono__chat" id="chatBody"></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 02 Lealtad -->
+      <article class="tarjeta tarjeta--lealtad" data-reveal>
+        <span class="tarjeta__num">02</span>
+        <div class="tarjeta__arte" aria-hidden="true">
+          <div class="sellos"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
+        </div>
+        <h3>Tarjetas de lealtad digitales</h3>
+        <p>Tus clientes juntan sellos o puntos desde su celular, sin tarjetas de papel que se pierden.</p>
+        <a class="tarjeta__link" data-wa="Hola DiverX, quiero cotizar tarjetas de lealtad digitales. ¿Qué información necesitan?" href="https://wa.me/529381398816" target="_blank" rel="noopener">Cotizar lealtad <span aria-hidden="true">→</span></a>
+      </article>
+
+      <!-- 03 NFC -->
+      <article class="tarjeta tarjeta--nfc" data-reveal>
+        <span class="tarjeta__num">03</span>
+        <div class="tarjeta__arte" aria-hidden="true">
+          <div class="ondas"><i></i><i></i><i></i><span></span></div>
+        </div>
+        <h3>Tarjetas NFC para reseñas de Google</h3>
+        <p>Un toque con el celular y tu cliente llega directo a dejarte una reseña.</p>
+        <a class="tarjeta__link" data-wa="Hola DiverX, quiero cotizar tarjetas NFC para reseñas de Google. ¿Qué información necesitan?" href="https://wa.me/529381398816" target="_blank" rel="noopener">Cotizar NFC <span aria-hidden="true">→</span></a>
+      </article>
+
+      <!-- 05 Redes -->
+      <article class="tarjeta tarjeta--redes" data-reveal>
+        <span class="tarjeta__num">05</span>
+        <div class="tarjeta__arte" aria-hidden="true">
+          <div class="feed"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <h3>Diseños para tus redes sociales</h3>
+        <p>Publicaciones e historias con la identidad de tu marca, listas para subir.</p>
+        <a class="tarjeta__link" data-wa="Hola DiverX, quiero cotizar diseños para redes sociales. ¿Qué información necesitan?" href="https://wa.me/529381398816" target="_blank" rel="noopener">Cotizar diseños <span aria-hidden="true">→</span></a>
+      </article>
+
+      <!-- 06 Sistema a la medida -->
+      <article class="tarjeta tarjeta--sistema" data-reveal>
+        <span class="tarjeta__num">06</span>
+        <div class="tarjeta__arte" aria-hidden="true"><div class="matriz" data-matriz></div></div>
+        <h3>Cotiza el sistema que necesites</h3>
+        <p>¿Tu negocio necesita algo que no está aquí? Lo diseñamos y lo construimos a tu medida.</p>
+        <a class="btn btn--cta btn--sm" data-wa="Hola DiverX, quiero cotizar un sistema a la medida para mi negocio." href="https://wa.me/529381398816" target="_blank" rel="noopener">Cotizar mi sistema</a>
+      </article>
     </div>
-  </header>
+  </div>
+</section>
+<!-- ===== FIN Servicios ===== -->
 
-  <main>
-    <!-- HERO -->
-    <section class="hero" id="hero">
-      <div class="hero__grid" aria-hidden="true"></div>
+<!-- ===== INICIO Proceso ===== -->
+<section class="seccion seccion--proceso" id="proceso">
+  <div class="corte" aria-hidden="true"></div>
+  <div class="contenedor">
+    <header class="seccion__head">
+      <span class="ceja" data-reveal>Proceso</span>
+      <h2 class="h2" data-split>De tu mensaje a tu solución en seis pasos</h2>
+    </header>
 
-      <!-- Elementos flotantes -->
-      <div class="floaters" aria-hidden="true">
-        <div class="floater" data-depth="0.35" style="top: 9%; right: 5%;">
-          <div class="ring float float--2"></div>
-        </div>
-        <div class="floater floater--chip" data-depth="0.9" style="top: 17%; right: 24%;">
-          <div class="chip float float--1">
-            <span class="chip__icon chip__icon--blue">&lt;/&gt;</span>
-            <span class="chip__text"><strong>Sitio publicado</strong><small>100% responsive</small></span>
-          </div>
-        </div>
-        <div class="floater" data-depth="0.5" style="top: 31%; right: 33%;">
-          <div class="plus float float--3"></div>
-        </div>
-        <div class="floater floater--chip" data-depth="1.2" style="top: 41%; right: 5%;">
-          <div class="chip float float--2">
-            <span class="chip__icon chip__icon--red">
-              <svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.9A8 8 0 1 1 21 12Z"/></svg>
-            </span>
-            <span class="chip__text"><strong>Cotización enviada ✓</strong><small>02:14 a.m. · Agente IA</small></span>
-          </div>
-        </div>
-        <div class="floater" data-depth="0.7" style="top: 27%; right: 3%;">
-          <div class="dot-f dot-f--blue float float--3"></div>
-        </div>
-        <div class="floater" data-depth="0.6" style="top: 58%; right: 33%;">
-          <div class="square float float--1"></div>
-        </div>
-        <div class="floater floater--chip" data-depth="0.8" style="top: 68%; right: 15%;">
-          <div class="chip float float--3">
-            <span class="chip__icon chip__icon--blue">
-              <svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><path d="M14 14h2v2h-2zM18 18h2v2h-2z"/></svg>
-            </span>
-            <span class="chip__text"><strong>Menú digital</strong><small>Escanea y ordena</small></span>
-          </div>
-        </div>
-        <div class="floater" data-depth="0.4" style="top: 82%; right: 40%;">
-          <div class="ring ring--sm ring--red float float--2"></div>
-        </div>
-        <div class="floater" data-depth="1" style="top: 86%; right: 6%;">
-          <div class="plus plus--red float float--1"></div>
-        </div>
-        <div class="floater" data-depth="0.55" style="top: 52%; right: 22%;">
-          <div class="dot-f dot-f--red float float--2"></div>
-        </div>
-      </div>
+    <ol class="linea" id="linea">
+      <li class="linea__trazo" aria-hidden="true"><span class="linea__luz" id="lineaLuz"></span></li>
+      <li class="paso"><span class="paso__nodo">01</span><h3>Contacto</h3><p>Nos escribes por WhatsApp y nos cuentas qué necesita tu negocio.</p></li>
+      <li class="paso"><span class="paso__nodo">02</span><h3>Diagnóstico</h3><p>Revisamos tu negocio y detectamos qué solución te conviene.</p></li>
+      <li class="paso"><span class="paso__nodo">03</span><h3>Diseño y construcción</h3><p>Diseñamos y construimos la solución pensada para ti.</p></li>
+      <li class="paso"><span class="paso__nodo">04</span><h3>Oferta personalizada</h3><p>Te la mostramos funcionando, con una oferta a tu medida.</p></li>
+      <li class="paso"><span class="paso__nodo">05</span><h3>Entrega</h3><p>Publicamos tu producto final y te enseñamos a usarlo.</p></li>
+      <li class="paso"><span class="paso__nodo">06</span><h3>Soporte</h3><p>Te acompañamos con soporte y mantenimiento.</p></li>
+    </ol>
 
-      <div class="container hero__inner" id="heroInner">
-        <p class="eyebrow reveal"><span class="dot dot--blue"></span> Negocios digitales</p>
-        <h1 class="hero__title reveal" style="--d: 1">
-          Tu negocio,<br />
-          trabajando <span class="accent-red">24/7</span>.
-        </h1>
-        <p class="hero__lead reveal" style="--d: 2">
-          Creamos páginas web, agentes de inteligencia artificial que responden a tus clientes por WhatsApp
-          y menús interactivos para restaurantes. Simple, rápido y sin complicaciones.
-        </p>
-        <div class="hero__actions reveal" style="--d: 3">
-          <a href="#contacto" class="btn btn--red">Solicitar cotización</a>
-          <a href="#servicios" class="btn btn--ghost">Ver servicios</a>
-        </div>
-
-        <ul class="hero__stats reveal" style="--d: 4" aria-label="Datos clave">
-          <li><strong>24/7</strong><span>Atención automática</span></li>
-          <li><strong>&lt; 5 s</strong><span>Tiempo de respuesta</span></li>
-          <li><strong>3</strong><span>Servicios, un solo equipo</span></li>
-        </ul>
-      </div>
-
-      <a href="#servicios" class="scroll-cue" id="scrollCue" aria-label="Bajar a servicios">
-        <span class="scroll-cue__line"></span>
-        Desliza
-      </a>
-    </section>
-
-    <!-- SERVICIOS -->
-    <section class="section" id="servicios">
-      <div class="container">
-        <header class="section__head reveal">
-          <p class="eyebrow"><span class="dot dot--red"></span> Servicios</p>
-          <h2 class="section__title">Lo que hacemos</h2>
-          <p class="section__lead">Tres soluciones enfocadas en una sola meta: que vendas más y atiendas mejor.</p>
-        </header>
-
-        <div class="services">
-          <div class="reveal" style="--d: 0">
-            <article class="card interactive">
-              <span class="card__num">01</span>
-              <div class="card__icon card__icon--blue" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 8h18M8 21h8M12 18v3"/></svg>
-              </div>
-              <h3 class="card__title">Páginas web</h3>
-              <p class="card__text">Sitios modernos, rápidos y adaptados a celular que convierten visitas en clientes.</p>
-              <ul class="card__list">
-                <li>Diseño a medida</li>
-                <li>100% responsive</li>
-                <li>SEO básico incluido</li>
-                <li>Dominio y hosting</li>
-              </ul>
-            </article>
-          </div>
-
-          <div class="reveal" style="--d: 1">
-            <article class="card card--featured interactive">
-              <span class="card__num">02</span>
-              <span class="card__badge">Más solicitado</span>
-              <div class="card__icon card__icon--red" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.9A8 8 0 1 1 21 12Z"/><path d="M9 11h.01M12 11h.01M15 11h.01"/></svg>
-              </div>
-              <h3 class="card__title">Agentes IA para WhatsApp</h3>
-              <p class="card__text">Un asistente que responde cotizaciones, agenda citas y atiende clientes las 24 horas.</p>
-              <ul class="card__list">
-                <li>Constructoras</li>
-                <li>Paneles solares</li>
-                <li>Clínicas</li>
-                <li>Escala a un humano cuando hace falta</li>
-              </ul>
-            </article>
-          </div>
-
-          <div class="reveal" style="--d: 2">
-            <article class="card interactive">
-              <span class="card__num">03</span>
-              <div class="card__icon card__icon--blue" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><path d="M14 14h2v2h-2zM18 18h2v2h-2zM14 18h2M18 14h2"/></svg>
-              </div>
-              <h3 class="card__title">Menús interactivos</h3>
-              <p class="card__text">Menús digitales con QR para restaurantes y cafeterías, fáciles de actualizar.</p>
-              <ul class="card__list">
-                <li>Acceso por código QR</li>
-                <li>Fotos y categorías</li>
-                <li>Precios editables al instante</li>
-                <li>Pedidos directo a WhatsApp</li>
-              </ul>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- AGENTES IA -->
-    <section class="section section--alt" id="agentes">
-      <div class="container agents">
-        <div class="agents__copy reveal">
-          <p class="eyebrow"><span class="dot dot--blue"></span> Agentes IA</p>
-          <h2 class="section__title">Cotizaciones respondidas<br />mientras duermes.</h2>
-          <p class="section__lead">
-            Tus clientes escriben a cualquier hora. Nuestro agente entiende lo que necesitan,
-            les da información clara y agenda el siguiente paso, sin que pierdas un solo prospecto.
-          </p>
-
-          <div class="tabs" role="tablist" aria-label="Ejemplos por industria">
-            <button class="tab is-active" role="tab" aria-selected="true" data-chat="constructora">Constructoras</button>
-            <button class="tab" role="tab" aria-selected="false" data-chat="solar">Paneles solares</button>
-            <button class="tab" role="tab" aria-selected="false" data-chat="clinica">Clínicas</button>
-          </div>
-
-          <ul class="checks">
-            <li>Responde en segundos, de día o de noche</li>
-            <li>Califica prospectos y recopila datos</li>
-            <li>Se conecta a tu agenda o CRM</li>
-          </ul>
-        </div>
-
-        <div class="phone reveal" style="--d: 1" aria-live="polite">
-          <div class="phone__top">
-            <span class="phone__avatar" aria-hidden="true">IA</span>
-            <div>
-              <strong id="chatName">Asistente · Constructora</strong>
-              <span class="phone__status">en línea</span>
-            </div>
-          </div>
-          <div class="phone__body" id="chatBody"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROCESO -->
-    <section class="section" id="proceso">
-      <div class="container">
-        <header class="section__head reveal">
-          <p class="eyebrow"><span class="dot dot--red"></span> Proceso</p>
-          <h2 class="section__title">Cómo trabajamos</h2>
-        </header>
-
-        <ol class="steps">
-          <li class="reveal" style="--d: 0">
-            <div class="step">
-              <span class="step__num">01</span>
-              <h3>Diagnóstico</h3>
-              <p>Entendemos tu negocio, tus clientes y lo que necesitas lograr.</p>
-            </div>
-          </li>
-          <li class="reveal" style="--d: 1">
-            <div class="step">
-              <span class="step__num">02</span>
-              <h3>Desarrollo</h3>
-              <p>Diseñamos y construimos tu solución con revisiones en cada etapa.</p>
-            </div>
-          </li>
-          <li class="reveal" style="--d: 2">
-            <div class="step">
-              <span class="step__num">03</span>
-              <h3>Lanzamiento y soporte</h3>
-              <p>Publicamos, medimos resultados y te acompañamos después.</p>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- CONTACTO -->
-    <section class="section" id="contacto">
-      <div class="container">
-        <div class="cta reveal">
-          <h2 class="cta__title">¿Listo para digitalizar tu negocio?</h2>
-          <p class="cta__text">Escríbenos y recibe una propuesta sin costo en menos de 24 horas.</p>
-          <div class="cta__actions">
-            <!-- WhatsApp: +52 938 139 8816 (código de país, sin + ni espacios) -->
-            <a class="btn btn--red" href="https://wa.me/529381398816?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20servicios" target="_blank" rel="noopener">
-              <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.9A8 8 0 1 1 21 12Z"/></svg>
-              Hablar por WhatsApp
-            </a>
-            <a class="btn btn--ghost" href="mailto:BeCode.Startup@gmail.com">BeCode.Startup@gmail.com</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FUNDADORES -->
-    <section class="section section--founders" id="equipo">
-      <div class="container">
-        <header class="section__head reveal">
-          <p class="eyebrow"><span class="dot dot--blue"></span> Equipo</p>
-          <h2 class="section__title">Fundadores</h2>
-          <p class="section__lead">Las personas detrás de BeCode.</p>
-        </header>
-
-        <div class="founders">
-          <div class="reveal" style="--d: 0">
-            <article class="founder interactive">
-              <!-- Para usar foto: reemplaza las iniciales por <img src="daniel.jpg" alt=""> -->
-              <div class="founder__avatar founder__avatar--blue" aria-hidden="true">DS</div>
-              <div class="founder__info">
-                <h3 class="founder__name">Daniel Jesus Santiago Madrigal</h3>
-                <p class="founder__role">Cofundador</p>
-              </div>
-            </article>
-          </div>
-
-          <div class="reveal" style="--d: 1">
-            <article class="founder founder--red interactive">
-              <!-- Para usar foto: reemplaza las iniciales por <img src="cesar.jpg" alt=""> -->
-              <div class="founder__avatar founder__avatar--red" aria-hidden="true">CV</div>
-              <div class="founder__info">
-                <h3 class="founder__name">César Natanael Villa Díaz</h3>
-                <p class="founder__role">Cofundador</p>
-              </div>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container footer__inner">
-      <a href="#top" class="logo logo--sm" aria-label="BeCode, inicio">
-        <span class="logo__mark" aria-hidden="true"><span class="logo__b">B</span><span class="logo__c">C</span></span>
-        <span>Be<span class="logo__thin">Code</span></span>
-      </a>
-      <p>© <span id="year"></span> BeCode. Todos los derechos reservados.</p>
+    <div class="seccion__cta" data-reveal>
+      <a class="btn btn--cta" data-wa="Hola DiverX, quiero empezar con el diagnóstico de mi negocio." href="https://wa.me/529381398816" target="_blank" rel="noopener">Cotizar mi proyecto</a>
     </div>
-  </footer>
+  </div>
+</section>
+<!-- ===== FIN Proceso ===== -->
 
-  <script src="script.js"></script>
+<!-- ===== INICIO Demos ===== -->
+<section class="seccion" id="demos">
+  <div class="contenedor">
+    <header class="seccion__head">
+      <span class="ceja" data-reveal>Demos</span>
+      <h2 class="h2" data-split>Así se ve trabajar con DiverX</h2>
+    </header>
+
+    <div class="demos">
+      <figure class="demo" data-reveal>
+        <div class="demo__pantalla"><span class="pendiente">[DEMO REAL 1: CAPTURA O ENLACE]</span></div>
+        <figcaption><span class="demo__giro">[GIRO]</span><span class="demo__nombre">[NOMBRE DEL PROYECTO]</span></figcaption>
+      </figure>
+      <figure class="demo" data-reveal>
+        <div class="demo__pantalla"><span class="pendiente">[DEMO REAL 2: CAPTURA O ENLACE]</span></div>
+        <figcaption><span class="demo__giro">[GIRO]</span><span class="demo__nombre">[NOMBRE DEL PROYECTO]</span></figcaption>
+      </figure>
+      <figure class="demo" data-reveal>
+        <div class="demo__pantalla"><span class="pendiente">[DEMO REAL 3: CAPTURA O ENLACE]</span></div>
+        <figcaption><span class="demo__giro">[GIRO]</span><span class="demo__nombre">[NOMBRE DEL PROYECTO]</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="seccion__cta" data-reveal>
+      <a class="btn btn--ghost" data-wa="Hola DiverX, vi sus demos y quiero algo así para mi negocio." href="https://wa.me/529381398816" target="_blank" rel="noopener">Quiero algo así</a>
+    </div>
+  </div>
+</section>
+<!-- ===== FIN Demos ===== -->
+
+<!-- ===== INICIO Equipo ===== -->
+<section class="seccion seccion--equipo" id="equipo">
+  <svg class="equipo__x" viewBox="0 0 2000 1875" aria-hidden="true"><g fill="currentColor"><polygon points="236,222 490,222 893,640 697,846 236,405"/><polygon points="236,1370 1365,222 1750,222 1750,605 722,1640 236,1640"/><polygon points="1100,1325 1320,1097 1750,1512 1750,1640 1402,1640"/></g></svg>
+  <div class="contenedor equipo">
+    <div class="equipo__concepto">
+      <span class="ceja" data-reveal>Equipo</span>
+      <h2 class="h2" data-split>No seguimos fórmulas</h2>
+      <p class="equipo__frase" data-reveal>En DiverX creemos que el mundo digital no está hecho para seguir fórmulas, sino para crear nuevas posibilidades.</p>
+      <p data-reveal>Somos un estudio de innovación digital que combina creatividad, tecnología y estrategia para transformar ideas en soluciones que impulsan negocios.</p>
+      <p data-reveal>Diseñamos experiencias digitales, desarrollamos sitios web, creamos identidades visuales e implementamos soluciones tecnológicas que ayudan a las empresas a conectar con sus clientes, optimizar sus procesos y alcanzar nuevas oportunidades de crecimiento.</p>
+    </div>
+
+    <div class="fundadores">
+      <article class="fundador" data-reveal>
+        <!-- Para usar foto: reemplaza las iniciales por <img src="img/daniel.jpg" alt="Daniel Jesus Santiago Madrigal"> -->
+        <div class="fundador__avatar" aria-hidden="true">DS</div>
+        <div><h3>Daniel Jesus Santiago Madrigal</h3><p>Cofundador</p></div>
+      </article>
+      <article class="fundador" data-reveal>
+        <!-- Para usar foto: reemplaza las iniciales por <img src="img/cesar.jpg" alt="César Natanael Villa Díaz"> -->
+        <div class="fundador__avatar" aria-hidden="true">CV</div>
+        <div><h3>César Natanael Villa Díaz</h3><p>Cofundador</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+<!-- ===== FIN Equipo ===== -->
+
+<!-- ===== INICIO Contacto ===== -->
+<section class="seccion seccion--contacto" id="contacto">
+  <div class="contacto__fondo" aria-hidden="true"></div>
+  <div class="contenedor contacto">
+    <span class="ceja" data-reveal>Contacto</span>
+    <h2 class="h2 h2--grande" data-split>Cuéntanos qué necesita tu negocio</h2>
+    <p class="contacto__texto" data-reveal>Escríbenos por WhatsApp y armamos tu propuesta.</p>
+    <div class="acciones acciones--contacto" data-reveal>
+      <a class="btn btn--cta" data-wa="Hola DiverX, quiero información sobre sus servicios." href="https://wa.me/529381398816" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.9A8 8 0 1 1 21 12Z"/></svg>
+        Cotizar mi proyecto
+      </a>
+    </div>
+    <ul class="canales" data-reveal>
+      <li><a href="https://wa.me/529381398816" data-wa="Hola DiverX, quiero información sobre sus servicios." target="_blank" rel="noopener"><span class="canales__tipo">WhatsApp</span><span class="canales__dato">+52 938 139 8816</span></a></li>
+      <li><a href="mailto:BeCode.Startup@gmail.com"><span class="canales__tipo">Correo</span><span class="canales__dato">BeCode.Startup@gmail.com</span></a></li>
+      <li><a href="https://www.instagram.com/diverx.mexico/" target="_blank" rel="noopener"><span class="canales__tipo">Instagram</span><span class="canales__dato">@diverx.mexico</span></a></li>
+      <li><a href="https://www.facebook.com/profile.php?id=61596228645429" target="_blank" rel="noopener"><span class="canales__tipo">Facebook</span><span class="canales__dato">DiverX</span></a></li>
+    </ul>
+  </div>
+</section>
+<!-- ===== FIN Contacto ===== -->
+
+</main>
+
+<!-- ===== INICIO Pie ===== -->
+<footer class="pie">
+  <div class="contenedor pie__fila">
+    <a href="#top" class="marca marca--pie" aria-label="DiverX, volver al inicio">
+      <svg class="marca__x" viewBox="0 0 2000 1875" aria-hidden="true">
+        <rect width="2000" height="1875"/>
+        <g><polygon points="236,222 490,222 893,640 697,846 236,405"/><polygon points="236,1370 1365,222 1750,222 1750,605 722,1640 236,1640"/><polygon points="1100,1325 1320,1097 1750,1512 1750,1640 1402,1640"/></g>
+      </svg>
+      <span class="marca__nombre">DiverX</span>
+    </a>
+    <p class="pie__lema">Different by nature.</p>
+    <p class="pie__copy">© <span id="anio">2026</span> DiverX</p>
+  </div>
+</footer>
+<!-- ===== FIN Pie ===== -->
+
+<!-- Barra fija en celular -->
+<div class="cta-movil" aria-hidden="true">
+  <a class="btn btn--cta" data-wa="Hola DiverX, quiero cotizar un proyecto." href="https://wa.me/529381398816" target="_blank" rel="noopener" tabindex="-1">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.9A8 8 0 1 1 21 12Z"/></svg>
+    Cotizar por WhatsApp
+  </a>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js" defer></script>
+<script src="js/main.js?v=1" defer></script>
 </body>
 </html>
