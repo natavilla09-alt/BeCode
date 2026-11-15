@@ -111,15 +111,59 @@ html.lenis,html.lenis body{height:auto}
    ========================================================= */
 .hero{position:relative;isolation:isolate;min-height:100svh;padding:96px var(--gutter) 48px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(18px,3vw,28px);overflow:hidden}
 .hero__fondo{position:absolute;inset:0;z-index:-2;pointer-events:none;
-  background:
-    radial-gradient(55% 45% at 50% 42%,rgba(201,0,49,.38),transparent 70%),
-    radial-gradient(35% 30% at 85% 15%,rgba(201,0,49,.18),transparent 70%),
-    radial-gradient(40% 35% at 10% 90%,rgba(201,0,49,.14),transparent 70%),
-    var(--bg)}
-.hero__anillos{position:absolute;left:50%;top:44%;width:min(1100px,180vw);aspect-ratio:1;translate:-50% -50%;z-index:-1;opacity:.55;pointer-events:none}
+  background:radial-gradient(45% 40% at 50% 42%,rgba(201,0,49,.30),transparent 70%)}
+.hero__anillos{position:absolute;left:50%;top:44%;width:min(1100px,180vw);aspect-ratio:1;translate:-50% -50%;z-index:-1;opacity:.3;pointer-events:none}
+
+/* ---------- Fondo continuo de la página (referencia: luz roja que entra por la derecha) ---------- */
+.fondo{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;background:var(--bg)}
+.fondo img{position:absolute;left:0;top:-4%;width:100%;height:112%;object-fit:cover;object-position:70% 50%;will-change:transform}
+.fondo::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(90deg,#060606 0%,rgba(6,6,6,.9) 20%,rgba(6,6,6,.5) 48%,rgba(6,6,6,.3) 72%,rgba(6,6,6,.4) 100%),
+  linear-gradient(0deg,rgba(6,6,6,.85) 0%,transparent 38%),
+  linear-gradient(180deg,rgba(6,6,6,.65) 0%,transparent 22%)}
+@media (max-width:700px){
+  .fondo img{object-position:center top}
+  .fondo::after{background:linear-gradient(180deg,rgba(6,6,6,.55) 0%,rgba(6,6,6,.72) 45%,rgba(6,6,6,.88) 100%)}
+}
+
+/* ---------- Holograma vivo sobre el último cuadro ---------- */
+.holo{position:absolute;inset:0;z-index:2;pointer-events:none;mix-blend-mode:screen;opacity:0;transition:opacity .8s var(--ease)}
+.marco.is-end .holo,.no-js .holo{opacity:1}
+.no-js .marco__final{opacity:1}
+.holo__capa,.holo__vivo{position:absolute;inset:0}
+.holo__vivo{animation:holoParpadeo 5.5s steps(1,end) infinite}
+.holo__brillo{position:absolute;left:50.4%;top:39.6%;width:36%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.32) 0%,rgba(255,51,85,.38) 30%,rgba(201,0,49,.16) 52%,transparent 70%);
+  animation:holoRespira 3.4s ease-in-out infinite alternate}
+.holo__haz{position:absolute;left:50%;bottom:10%;width:34%;height:34%;translate:-50% 0;
+  background:linear-gradient(0deg,rgba(255,90,110,.6),rgba(255,51,85,.18) 70%,transparent);
+  clip-path:polygon(47% 100%,53% 100%,100% 0,0 0);animation:holoHaz 2.6s ease-in-out infinite}
+.holo__scan{position:absolute;left:33%;top:16%;width:35%;height:48%;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.12) 0 2px,transparent 2px 7px);
+  -webkit-mask:linear-gradient(0deg,transparent,#000 30%,#000 70%,transparent);mask:linear-gradient(0deg,transparent,#000 30%,#000 70%,transparent);
+  animation:holoScan 2.2s linear infinite}
+.holo__chispas{position:absolute;left:44%;width:12%;bottom:10%;height:52%}
+.holo__chispas i{position:absolute;bottom:0;width:3px;height:3px;border-radius:50%;background:#fff;box-shadow:0 0 8px 2px rgba(255,51,85,.9);opacity:0;animation:holoChispa 2.8s linear infinite}
+.holo__chispas i:nth-child(1){left:10%;animation-delay:0s}
+.holo__chispas i:nth-child(2){left:30%;animation-delay:.5s}
+.holo__chispas i:nth-child(3){left:50%;animation-delay:1.1s}
+.holo__chispas i:nth-child(4){left:65%;animation-delay:1.6s}
+.holo__chispas i:nth-child(5){left:82%;animation-delay:2.1s}
+.holo__chispas i:nth-child(6){left:40%;animation-delay:2.5s}
+.holo--pausa,.holo--pausa *{animation-play-state:paused!important}
+@keyframes holoRespira{from{opacity:.55;transform:scale(.92)}to{opacity:1;transform:scale(1.08)}}
+@keyframes holoHaz{0%,100%{opacity:.55}40%{opacity:.95}55%{opacity:.7}}
+@keyframes holoScan{from{background-position:0 0}to{background-position:0 -28px}}
+@keyframes holoChispa{0%{bottom:0;opacity:0}15%{opacity:1}100%{bottom:100%;opacity:0}}
+@keyframes holoParpadeo{0%{opacity:1}46%{opacity:1}47%{opacity:.62}48%{opacity:1}73%{opacity:.85}74%{opacity:1}}
 .marco{position:relative;width:min(980px,100%,calc((100svh - 400px) * 16 / 9));min-width:min(100%,320px);aspect-ratio:16/9;border-radius:var(--r-md);overflow:hidden;background:#000;border:1px solid var(--line-red);box-shadow:0 40px 120px -40px rgba(201,0,49,.6)}
 .marco video,.marco img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .marco__final{opacity:0;transition:opacity .3s}
+.marco__tapa{position:absolute;left:50%;top:61.1%;width:13%;height:8%;translate:-50% -50%;z-index:1;pointer-events:none;
+  background:linear-gradient(90deg,#3e3a35,#54504c 50%,#6e6658);
+  -webkit-mask:radial-gradient(closest-side,#000 62%,transparent);mask:radial-gradient(closest-side,#000 62%,transparent);
+  transition:opacity .35s}
+.marco__tapa.is-off,.marco.is-end .marco__tapa{opacity:0}
 .marco.is-end .marco__final{opacity:1}
 .esquina{position:absolute;width:18px;height:18px;border:2px solid var(--red);z-index:2}
 .esquina--tl{top:10px;left:10px;border-right:0;border-bottom:0}
@@ -131,8 +175,6 @@ html.lenis,html.lenis body{height:auto}
 .lema span{display:block}
 .lema .rojo{color:var(--red-on-dark)}
 .acciones{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
-.saltar{position:absolute;right:var(--gutter);bottom:18px;font:500 11px/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:none;border:1px solid var(--line);border-radius:var(--r-pill);padding:10px 14px;cursor:pointer;min-height:36px}
-.no-js .saltar{display:none}
 
 /* =========================================================
    Secciones
@@ -320,4 +362,6 @@ html.lenis,html.lenis body{height:auto}
   .paso__nodo{background:var(--red);color:#fff}
   .btn,.tarjeta,.fundador,.canales a{transition:none}
   .js .msg{animation:none}
+  .holo__vivo,.holo__brillo,.holo__haz,.holo__scan{animation:none}
+  .holo__chispas{display:none}
 }

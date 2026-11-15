@@ -24,9 +24,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@500;600;700&display=swap">
   <link rel="preload" as="image" href="img/laptop-inicio.jpg">
-  <link rel="stylesheet" href="css/estilos.css?v=1">
+  <link rel="preload" as="image" href="img/fondo-edificio.jpg" media="(min-width: 701px)">
+  <link rel="preload" as="image" href="img/fondo-edificio-movil.jpg" media="(max-width: 700px)">
+  <link rel="stylesheet" href="css/estilos.css?v=2">
 </head>
 <body>
+
+<!-- Fondo continuo de toda la página: edificio simétrico en luz roja (Higgsfield) -->
+<div class="fondo" aria-hidden="true">
+  <picture>
+    <source media="(max-width: 700px)" srcset="img/fondo-edificio-movil.jpg">
+    <img src="img/fondo-edificio.jpg" alt="" width="1344" height="752" fetchpriority="high">
+  </picture>
+</div>
 
 <a class="saltar-contenido" href="#servicios">Saltar al contenido</a>
 
@@ -72,7 +82,20 @@
     <video id="laptop" muted playsinline preload="auto" poster="img/laptop-inicio.jpg" aria-label="Una laptop gris se abre y proyecta el logo de DiverX como holograma">
       <source src="video/hero-laptop.mp4" type="video/mp4">
     </video>
+    <!-- Tapa el logo que el generador dibujó en la tapa cerrada; se apaga cuando se abre -->
+    <span class="marco__tapa" id="tapa" aria-hidden="true"></span>
     <img class="marco__final" src="img/laptop-final.jpg" alt="" aria-hidden="true" width="1280" height="720">
+    <!-- Holograma vivo: sigue encendido sobre el último cuadro hasta que se baja la página -->
+    <div class="holo" aria-hidden="true">
+      <div class="holo__capa" id="holoCapa">
+        <div class="holo__vivo">
+          <span class="holo__haz"></span>
+          <span class="holo__brillo"></span>
+          <span class="holo__scan"></span>
+          <span class="holo__chispas"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+        </div>
+      </div>
+    </div>
     <span class="esquina esquina--tl"></span><span class="esquina esquina--tr"></span>
     <span class="esquina esquina--bl"></span><span class="esquina esquina--br"></span>
     <span class="marco__barrido" aria-hidden="true"></span>
@@ -88,7 +111,6 @@
     <a class="btn btn--ghost" href="#servicios">Ver servicios</a>
   </div>
 
-  <button class="saltar" id="saltar" type="button">Saltar intro</button>
 </section>
 <!-- ===== FIN Zona 2 y 3 ===== -->
 
@@ -195,7 +217,7 @@
 
     <ol class="linea" id="linea">
       <li class="linea__trazo" aria-hidden="true"><span class="linea__luz" id="lineaLuz"></span></li>
-      <li class="paso"><span class="paso__nodo">01</span><h3>Contacto</h3><p>Nos escribes por WhatsApp y nos cuentas qué necesita tu negocio.</p></li>
+      <li class="paso"><span class="paso__nodo">01</span><h3>Contacto</h3><p>Nos ponemos en contacto y nos cuentas qué necesita tu negocio.</p></li>
       <li class="paso"><span class="paso__nodo">02</span><h3>Diagnóstico</h3><p>Revisamos tu negocio y detectamos qué solución te conviene.</p></li>
       <li class="paso"><span class="paso__nodo">03</span><h3>Diseño y construcción</h3><p>Diseñamos y construimos la solución pensada para ti.</p></li>
       <li class="paso"><span class="paso__nodo">04</span><h3>Oferta personalizada</h3><p>Te la mostramos funcionando, con una oferta a tu medida.</p></li>
@@ -274,7 +296,7 @@
   <div class="contenedor contacto">
     <span class="ceja" data-reveal>Contacto</span>
     <h2 class="h2 h2--grande" data-split>Cuéntanos qué necesita tu negocio</h2>
-    <p class="contacto__texto" data-reveal>Escríbenos por WhatsApp y armamos tu propuesta.</p>
+    <p class="contacto__texto" data-reveal>Contáctanos y armamos tu propuesta.</p>
     <div class="acciones acciones--contacto" data-reveal>
       <a class="btn btn--cta" data-wa="Hola DiverX, quiero información sobre sus servicios." href="https://wa.me/529381398816" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.9A8 8 0 1 1 21 12Z"/></svg>
@@ -283,7 +305,7 @@
     </div>
     <ul class="canales" data-reveal>
       <li><a href="https://wa.me/529381398816" data-wa="Hola DiverX, quiero información sobre sus servicios." target="_blank" rel="noopener"><span class="canales__tipo">WhatsApp</span><span class="canales__dato">+52 938 139 8816</span></a></li>
-      <li><a href="mailto:BeCode.Startup@gmail.com"><span class="canales__tipo">Correo</span><span class="canales__dato">BeCode.Startup@gmail.com</span></a></li>
+      <li><a href="mailto:diverx.mexico@gmail.com"><span class="canales__tipo">Correo</span><span class="canales__dato">diverx.mexico@gmail.com</span></a></li>
       <li><a href="https://www.instagram.com/diverx.mexico/" target="_blank" rel="noopener"><span class="canales__tipo">Instagram</span><span class="canales__dato">@diverx.mexico</span></a></li>
       <li><a href="https://www.facebook.com/profile.php?id=61596228645429" target="_blank" rel="noopener"><span class="canales__tipo">Facebook</span><span class="canales__dato">DiverX</span></a></li>
     </ul>
@@ -321,6 +343,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js" defer></script>
-<script src="js/main.js?v=1" defer></script>
+<script src="js/main.js?v=2" defer></script>
 </body>
 </html>

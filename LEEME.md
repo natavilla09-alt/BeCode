@@ -31,7 +31,10 @@ Secciones, en orden: Portada (zonas 1 a 3), Servicios, Proceso, Demos, Equipo, C
 - **Letras (Google Fonts):** Archivo Black (títulos y nombre), Manrope 500 a 700 (menú, botones, párrafos), IBM Plex Mono 400 y 500 (descripciones, cejas, números).
 - **Forma:** radios de 4 y 8 px (esquinas filosas como la X). Los botones son cápsula, como en la web original.
 - **Movimiento:** técnico y potente, sin rebotes. Entradas `power4.out` / `cubic-bezier(.22,1,.36,1)`, 1 s, 48 px, escalonado 0.06 s. Cortinas `power3.inOut`. Lenis con inercia 0.1.
-- **Firma:** el video de la laptop se abre dentro de un marco con esquinas rojas. El marco aparece desde una línea, el menú se despliega desde el centro, una luz roja barre el marco y el lema sube por renglones. Se salta con "Saltar intro". Respaldo: a los 3 s todo está visible.
+- **Firma:** el video de la laptop se abre dentro de un marco con esquinas rojas. El marco aparece desde una línea, el menú se despliega desde el centro, una luz roja barre el marco y el lema sube por renglones. La entrada no bloquea nada: el lema y los botones aparecen en 1.5 s y el respaldo los muestra a los 3 s.
+- **Holograma vivo:** al terminar el video, la capa `.holo` (brillo que respira, parpadeo, líneas de escaneo, haz y chispas, en modo `screen`) sigue encendida sobre el último cuadro. Al bajar se apaga con `scrub` y fuera de pantalla se pausa.
+- **Parche de la tapa:** el generador de video volvió a dibujar el logo de Apple en la tapa cerrada. `.marco__tapa` lo cubre con el gris de la tapa hasta el segundo 1.15, cuando empieza a abrirse.
+- **Fondo de toda la página:** `img/fondo-edificio.jpg` (escritorio) y `img/fondo-edificio-movil.jpg` (celular), un edificio simétrico en luz roja generado en Higgsfield (GPT Image 2.6, 0.25 créditos, 15 nov 2026). Va fijo detrás de todo, oscurecido a la izquierda y abajo, y se desplaza más lento al bajar.
 - **Elementos propios:** X pequeña que alterna blanco y negro sobre el rojo (menú y pie); anillos y diagonales de la X (fondo de la portada); matriz de luces que dibuja la X (tarjeta 06); cortes diagonales rojos; etiquetas numeradas 01 a 06.
 - **Librerías:** GSAP 3.13.0 (ScrollTrigger, SplitText) desde cdnjs y Lenis 1.3.11 desde jsDelivr. Sin ellas, la página se ve completa y quieta.
 
@@ -42,14 +45,15 @@ Secciones, en orden: Portada (zonas 1 a 3), Servicios, Proceso, Demos, Equipo, C
 - **Fotos de los fundadores:** en la sección Equipo, cambia las iniciales por `<img src="img/daniel.jpg" alt="...">` (cuadradas, de unos 300 px).
 - **Demos:** cambia cada `[DEMO REAL]` por una imagen `<img src="img/demo-1.jpg" alt="...">` y llena el giro y el nombre.
 - **Colores y letras:** en `:root`, al inicio de `css/estilos.css`.
-- Después de cambiar CSS o JS, sube el número de `?v=1` en `index.html` (por ejemplo `?v=2`) para que los navegadores no muestren la versión vieja.
+- Después de cambiar CSS o JS, sube el número de `?v=` en `index.html` (hoy `?v=2`) para que los navegadores no muestren la versión vieja.
 
 ## De dónde salió cada dato
 
 | Dato | Fuente | Fecha |
 |---|---|---|
 | Textos de servicios, proceso, concepto y redes | `PAGINA WEB.md` y el documento de Word de la carpeta `DiverX website` | 15 nov 2026 |
-| WhatsApp y correo | Confirmados por César en el chat | 15 nov 2026 |
+| WhatsApp | Confirmado por César en el chat | 15 nov 2026 |
+| Correo diverx.mexico@gmail.com | Dado por César en el chat | 15 nov 2026 |
 | Rojo `#C90031` | Medido en `LOGO DIVERX.png` | 15 nov 2026 |
 | Chat del agente IA | Web anterior de BeCode (ejemplos ilustrativos, no clientes reales) | — |
 
@@ -71,10 +75,10 @@ Secciones, en orden: Portada (zonas 1 a 3), Servicios, Proceso, Demos, Equipo, C
 
 - [ ] `[DEMO REAL 1, 2 y 3]`: capturas o enlaces de trabajos reales, con giro y nombre.
 - [ ] Fotos de Daniel y César (hoy se ven sus iniciales).
-- [ ] El correo sigue siendo `BeCode.Startup@gmail.com`. Conviene uno con el nombre DiverX.
 - [ ] Dominio propio (hoy `becode-eight.vercel.app`). Al cambiarlo, actualiza `og:image` en `index.html`.
 - [ ] El video pesa 6.9 MB. Con una herramienta de compresión (HandBrake, gratis) puede bajar a unos 2 MB sin perder calidad visible.
-- [ ] Higgsfield: quedan 1.25 créditos. Otro video de 5 s cuesta 8.75.
+- [ ] Higgsfield: queda 1 crédito. Otro video de 5 s cuesta 8.75 y una imagen 0.25.
+- [ ] Si se genera otro video de la laptop, pedir de nuevo que no aparezca ningún logo en la tapa y quitar `.marco__tapa` si ya no hace falta.
 
 ## Cómo publicar
 

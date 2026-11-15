@@ -196,6 +196,17 @@
   const showEnd = () => marco.classList.add('is-end');
   safe(() => { video.addEventListener('ended', showEnd); video.addEventListener('error', showEnd); });
 
+  // Parche sobre la tapa cerrada: se quita cuando la tapa empieza a abrirse (1.15 s)
+  safe(() => {
+    const tapa = $('#tapa');
+    const check = () => tapa.classList.toggle('is-off', video.currentTime >= 1.15);
+    if ('requestVideoFrameCallback' in video) {
+      const loop = () => { check(); video.requestVideoFrameCallback(loop); };
+      video.requestVideoFrameCallback(loop);
+    } else video.addEventListener('timeupdate', check);
+    video.addEventListener('seeked', check);
+  });
+
   if (!hasGSAP) { safe(() => { if (RM) showEnd(); else video.play().catch(showEnd); }); return; }
 
   // ---------- 4. Efectos de mouse (solo con mouse de verdad) ----------
@@ -211,7 +222,6 @@
   if (RM) {
     showEnd();
     gsap.set('[data-in]', { opacity: 1 });
-    const s = $('#saltar'); s && s.remove();
     $$('.paso').forEach((p) => p.classList.add('is-on'));
     return;
   }
@@ -277,6 +287,28 @@
     }));
   });
 
+  // Fondo: el edificio se desplaza más lento que la página
+  safe(() => {
+    gsap.to('.fondo img', {
+      yPercent: -6, ease: 'none',
+      scrollTrigger: { trigger: d.body, start: 'top top', end: 'bottom bottom', scrub: true },
+    });
+  });
+
+  // Holograma: sigue vivo arriba y se apaga al deslizar la página
+  safe(() => {
+    const holo = $('.holo');
+    gsap.timeline({ scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true } })
+      .to('#holoCapa', { opacity: 0, ease: 'none' }, 0)
+      .to('#marco', { y: -40, ease: 'none' }, 0);
+    // Fuera de pantalla las animaciones se pausan (ahorra batería)
+    ScrollTrigger.create({
+      trigger: '#hero', start: 'top top', end: 'bottom top',
+      onLeave: () => holo.classList.add('holo--pausa'),
+      onEnterBack: () => holo.classList.remove('holo--pausa'),
+    });
+  });
+
   // Demos: cada marco se abre como cortina
   safe(() => {
     $$('.demo__pantalla').forEach((el) => {
@@ -304,17 +336,11 @@
     gsap.set(lema, { opacity: 1 });
     tl.fromTo($$('span', lema), { yPercent: 110, clipPath: 'inset(0 0 100% 0)' },
                                 { yPercent: 0, clipPath: 'inset(0 0 0% 0)', stagger: 0.12 }, 1.0)
-      .fromTo('.acciones', { opacity: 0, y: 20 }, { opacity: 1, y: 0 }, 1.5)
-      .set('.notch', { clearProps: 'opacity' });
+      .fromTo('.acciones', { opacity: 0, y: 20 }, { opacity: 1, y: 0 }, 1.5);
   });
 
   // Respaldo: a los 3 s todo está visible aunque algo falle
   setTimeout(() => gsap.set('[data-in]', { opacity: 1 }), 3000);
-
-  // Saltar intro con un toque
-  safe(() => {
-    $('#saltar').addEventListener('click', () => { tl && tl.progress(1); video.pause(); showEnd(); });
-  });
 
   intro();
   window.addEventListener('load', () => ScrollTrigger.refresh());
