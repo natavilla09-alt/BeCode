@@ -34,6 +34,7 @@ html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-ui);font-size:16px;line-height:1.6;overflow-x:clip;-webkit-font-smoothing:antialiased}
 img,video,svg{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
+a,button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 h1,h2,h3,p{margin:0}
 button{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--red-on-dark);outline-offset:3px;border-radius:4px}
@@ -55,10 +56,12 @@ html.lenis,html.lenis body{height:auto}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:14px 26px;border-radius:var(--r-pill);font:600 15px/1 var(--font-ui);border:1px solid transparent;cursor:pointer;white-space:nowrap;transition:transform var(--t-hover) var(--ease),background var(--t-hover) var(--ease),box-shadow var(--t-hover) var(--ease),border-color var(--t-hover) var(--ease)}
 .btn svg{width:18px;height:18px;flex:none}
 .btn--cta{background:var(--cta);color:var(--cta-ink)}
-.btn--cta:hover{background:var(--red-hi);box-shadow:0 12px 34px -10px rgba(255,51,85,.8);transform:translateY(-2px)}
+@media (hover:hover){.btn--cta:hover{background:var(--red-hi);box-shadow:0 12px 34px -10px rgba(255,51,85,.8);transform:translateY(-2px)}}
 .btn--cta:active{transform:scale(.97)}
 .btn--ghost{border-color:rgba(255,255,255,.22);color:var(--ink);background:rgba(255,255,255,.02)}
-.btn--ghost:hover{border-color:#fff;transform:translateY(-2px)}
+@media (hover:hover){.btn--ghost:hover{border-color:#fff;transform:translateY(-2px)}}
+.btn--cta:active{background:var(--red-hi)}
+.btn--ghost:active{border-color:#fff;transform:scale(.97)}
 .btn--sm{min-height:44px;padding:12px 20px;font-size:14px}
 
 /* ---------- Ceja y títulos ---------- */
@@ -72,7 +75,7 @@ html.lenis,html.lenis body{height:auto}
 /* =========================================================
    ZONA 1 · Barra superior
    ========================================================= */
-.top{position:absolute;inset:0 0 auto 0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px var(--gutter);height:76px}
+.top{position:absolute;inset:0 0 auto 0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px max(var(--gutter),env(safe-area-inset-right)) 18px max(var(--gutter),env(safe-area-inset-left));height:76px}
 .marca{display:inline-flex;align-items:center;gap:10px}
 .marca__x{width:30px;height:28px;flex:none}
 .marca__x rect{fill:var(--red)}
@@ -89,8 +92,15 @@ html.lenis,html.lenis body{height:auto}
 .notch a:hover::after,.notch a:focus-visible::after{opacity:1}
 
 .menu-btn{display:none}
+.notch__extra{display:none}
 
 @media (max-width:900px){
+  .notch{overflow-y:auto}
+  .notch__extra{display:flex;flex-direction:column;gap:14px;margin-top:22px}
+  .notch .notch__extra .btn{padding:14px 26px;border:1px solid transparent;border-radius:var(--r-pill);font:600 15px/1 var(--font-ui);letter-spacing:0;text-transform:none;color:#fff}
+  .notch__redes{display:flex;justify-content:center;gap:24px;margin:0}
+  .notch .notch__redes a{padding:12px 4px;border:0;font:500 12px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .no-js .notch__extra{display:none}
   .menu-btn{display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 16px;border-radius:var(--r-pill);background:rgba(18,18,20,.55);border:1px solid rgba(255,255,255,.14);font:600 12px/1 var(--font-ui);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;position:relative;z-index:60}
   .menu-btn__lineas{display:grid;gap:5px}
   .menu-btn__lineas i{display:block;width:16px;height:2px;background:#fff;transition:transform .35s var(--ease)}
@@ -115,7 +125,8 @@ html.lenis,html.lenis body{height:auto}
 .hero__anillos{position:absolute;left:50%;top:44%;width:min(1100px,180vw);aspect-ratio:1;translate:-50% -50%;z-index:-1;opacity:.3;pointer-events:none}
 
 /* ---------- Fondo continuo de la página (referencia: luz roja que entra por la derecha) ---------- */
-.fondo{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;background:var(--bg)}
+/* Altura fija (lvh): al esconderse la barra del navegador en iPhone, la imagen no se reescala ni salta */
+.fondo{position:fixed;top:0;left:0;width:100%;height:100vh;height:100lvh;z-index:-1;pointer-events:none;overflow:hidden;background:var(--bg)}
 .fondo img{position:absolute;left:0;top:-4%;width:100%;height:112%;object-fit:cover;object-position:70% 50%;will-change:transform}
 .fondo::after{content:"";position:absolute;inset:0;background:
   linear-gradient(90deg,#060606 0%,rgba(6,6,6,.9) 20%,rgba(6,6,6,.5) 48%,rgba(6,6,6,.3) 72%,rgba(6,6,6,.4) 100%),
@@ -190,15 +201,18 @@ html.lenis,html.lenis body{height:auto}
 .tarjeta--nfc{grid-area:nfc}.tarjeta--redes{grid-area:redes}.tarjeta--sistema{grid-area:sistema}
 .tarjeta{position:relative;isolation:isolate;display:flex;flex-direction:column;gap:10px;padding:26px;border-radius:var(--r-md);background:linear-gradient(180deg,var(--surface-2),var(--surface));border:1px solid rgba(201,0,49,.28);overflow:hidden;--mx:50%;--my:20%;transition:border-color var(--t-hover) var(--ease)}
 .tarjeta::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(320px circle at var(--mx) var(--my),rgba(201,0,49,.30),transparent 65%);opacity:.35;transition:opacity var(--t-hover) var(--ease)}
-.tarjeta:hover{border-color:rgba(255,51,85,.7)}
-.tarjeta:hover::before{opacity:1}
+@media (hover:hover){
+  .tarjeta:hover{border-color:rgba(255,51,85,.7)}
+  .tarjeta:hover::before{opacity:1}
+}
+.tarjeta:active{border-color:rgba(255,51,85,.7)}
 .tarjeta__num{position:absolute;top:18px;right:20px;font:500 11px/1 var(--font-mono);letter-spacing:.12em;color:var(--red-on-dark)}
 .tarjeta h3{font:400 clamp(20px,2vw,24px)/1.05 var(--font-display);text-transform:uppercase;max-width:16ch}
 .tarjeta p{font:400 14px/1.7 var(--font-mono);color:var(--muted);max-width:44ch}
 .tarjeta__arte{height:150px;margin:0 -6px 8px;display:grid;place-items:center}
 .tarjeta__link{margin-top:auto;padding-top:10px;display:inline-flex;align-items:center;gap:8px;min-height:44px;font:600 14px/1 var(--font-ui);color:var(--ink)}
 .tarjeta__link span{color:var(--red-on-dark);transition:transform var(--t-hover) var(--ease)}
-.tarjeta__link:hover span{transform:translateX(4px)}
+@media (hover:hover){.tarjeta__link:hover span{transform:translateX(4px)}}
 .tarjeta--sistema .btn{margin-top:auto;align-self:flex-start}
 
 /* Arte de cada tarjeta, hecho con piezas de la marca */
@@ -229,8 +243,8 @@ html.lenis,html.lenis body{height:auto}
 .ia__texto{display:flex;flex-direction:column;gap:12px;height:100%;justify-content:center}
 .ia__texto h3{font-size:clamp(26px,3vw,40px)}
 .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
-.tab{min-height:40px;padding:8px 14px;border-radius:var(--r-pill);background:transparent;border:1px solid var(--line);font:600 13px/1 var(--font-ui);color:var(--muted);cursor:pointer;transition:all .25s var(--ease)}
-.tab:hover{color:var(--ink);border-color:rgba(255,255,255,.3)}
+.tab{min-height:44px;padding:8px 14px;border-radius:var(--r-pill);background:transparent;border:1px solid var(--line);font:600 13px/1 var(--font-ui);color:var(--muted);cursor:pointer;transition:all .25s var(--ease)}
+@media (hover:hover){.tab:hover{color:var(--ink);border-color:rgba(255,255,255,.3)}}
 .tab.is-active{background:var(--red);border-color:var(--red);color:#fff}
 .telefono{width:100%;border:1px solid rgba(255,255,255,.16);border-radius:26px;overflow:hidden;background:#000;box-shadow:0 30px 70px -30px rgba(201,0,49,.7)}
 .telefono__top{display:flex;align-items:center;gap:10px;padding:14px 16px;background:var(--surface-2);border-bottom:1px solid var(--line)}
@@ -238,7 +252,7 @@ html.lenis,html.lenis body{height:auto}
 .telefono__avatar{width:34px;height:32px;flex:none;border-radius:6px;overflow:hidden}
 .telefono__avatar svg{width:100%;height:100%}
 .telefono__estado{font-size:12px;color:#3ddc84}
-.telefono__chat{display:flex;flex-direction:column;gap:9px;padding:16px;height:390px;overflow:hidden}
+.telefono__chat{display:flex;flex-direction:column;gap:9px;padding:16px;min-height:440px;overflow:hidden}
 .msg{max-width:84%;padding:9px 12px 5px;border-radius:14px;font-size:13.5px;line-height:1.45}
 .msg time{display:block;text-align:right;font-size:10.5px;opacity:.6;margin-top:2px}
 .msg--in{align-self:flex-start;background:var(--surface-2);border:1px solid var(--line);border-bottom-left-radius:4px}
@@ -283,7 +297,8 @@ html.lenis,html.lenis body{height:auto}
 .equipo__concepto .equipo__frase{color:var(--ink);font:700 clamp(19px,2vw,23px)/1.45 var(--font-ui)}
 .fundadores{display:grid;gap:16px}
 .fundador{display:flex;align-items:center;gap:20px;padding:22px;border-radius:var(--r-md);background:var(--surface);border:1px solid rgba(201,0,49,.28);transition:border-color var(--t-hover) var(--ease),transform var(--t-hover) var(--ease)}
-.fundador:hover{border-color:rgba(255,51,85,.7);transform:translateY(-3px)}
+@media (hover:hover){.fundador:hover{border-color:rgba(255,51,85,.7);transform:translateY(-3px)}}
+.fundador:active{border-color:rgba(255,51,85,.7)}
 .fundador__avatar{width:72px;height:72px;flex:none;display:grid;place-items:center;border-radius:var(--r-md);background:var(--red);font:400 24px/1 var(--font-display);color:#fff;box-shadow:0 0 30px -6px rgba(255,51,85,.6)}
 .fundador__avatar img{width:100%;height:100%;object-fit:cover;border-radius:inherit}
 .fundador h3{font:400 18px/1.2 var(--font-display);text-transform:uppercase}
@@ -298,7 +313,8 @@ html.lenis,html.lenis body{height:auto}
 .acciones--contacto{margin-top:8px}
 .canales{list-style:none;padding:0;margin:clamp(28px,4vw,48px) 0 0;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;width:100%}
 .canales a{display:flex;flex-direction:column;gap:8px;padding:20px 16px;min-height:44px;border-radius:var(--r-md);border:1px solid var(--line);background:rgba(14,14,16,.7);transition:border-color var(--t-hover) var(--ease),transform var(--t-hover) var(--ease),box-shadow var(--t-hover) var(--ease)}
-.canales a:hover{border-color:var(--red-on-dark);transform:translateY(-3px);box-shadow:0 14px 30px -18px rgba(255,51,85,.8)}
+@media (hover:hover){.canales a:hover{border-color:var(--red-on-dark);transform:translateY(-3px);box-shadow:0 14px 30px -18px rgba(255,51,85,.8)}}
+.canales a:active{border-color:var(--red-on-dark);background:rgba(201,0,49,.12)}
 .canales__tipo{font:500 11px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--red-on-dark)}
 .canales__dato{font:600 14px/1.3 var(--font-ui);overflow-wrap:anywhere}
 
@@ -312,7 +328,7 @@ html.lenis,html.lenis body{height:auto}
 /* ---------- Barra fija en celular ---------- */
 .cta-movil{display:none}
 @media (max-width:900px){
-  .cta-movil{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:45;display:flex;transform:translateY(160%);transition:transform .6s var(--ease)}
+  .cta-movil{position:fixed;left:max(12px,env(safe-area-inset-left));right:max(12px,env(safe-area-inset-right));bottom:calc(12px + env(safe-area-inset-bottom));z-index:45;display:flex;transform:translateY(160%);transition:transform .6s var(--ease)}
   .cta-movil.is-visible{transform:none}
   .cta-movil .btn{flex:1;box-shadow:0 14px 34px -10px rgba(0,0,0,.8)}
   .pie{padding-bottom:96px}
@@ -330,23 +346,34 @@ html.lenis,html.lenis body{height:auto}
   .canales{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:700px){
-  .hero{justify-content:flex-start;padding-top:104px}
+  :root{--section-y:64px}
+  .seccion__head{margin-bottom:28px}
+  .hero{justify-content:center;padding-top:96px;padding-bottom:32px}
   .marca__nombre{font-size:18px}
   .lema{font-size:clamp(28px,9vw,44px)}
   .acciones .btn{flex:1 1 100%}
+  /* Servicios compactos */
   .bento{grid-template-columns:1fr;grid-template-areas:none}
   .bento>.tarjeta{grid-area:auto}
+  .tarjeta{padding:22px;gap:8px}
+  .tarjeta__arte{height:96px;margin-bottom:4px}
+  .tarjeta__arte>*{transform:scale(.68)}
+  .tarjeta h3{font-size:20px}
+  .tarjeta p{font-size:13.5px}
   .ia{grid-template-columns:1fr}
-  .telefono__chat{height:420px}
+  .telefono__chat{min-height:440px}
   /* Proceso vertical */
   .linea{grid-template-columns:1fr;gap:28px;padding-left:76px}
   .linea__trazo{display:block;left:27px;right:auto;top:28px;bottom:28px;width:2px;height:auto}
   .linea__luz{transform-origin:center top;background:linear-gradient(180deg,var(--red),var(--red-on-dark))}
   .js .linea__luz{transform:scaleY(0)}
   .paso__nodo{position:absolute;left:-76px;top:0}
-  .paso h3{margin-top:0}
+  .paso{padding-right:8px}
+  .paso h3{margin-top:0;text-wrap:balance}
   .demos{grid-template-columns:1fr}
-  .canales{grid-template-columns:1fr}
+  .canales{grid-template-columns:1fr 1fr}
+  .canales li:nth-child(-n+2){grid-column:1/-1}
+  .canales a{padding:16px 14px}
   .fundador{padding:18px}
   .fundador__avatar{width:60px;height:60px;font-size:20px}
 }

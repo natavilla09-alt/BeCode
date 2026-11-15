@@ -10,7 +10,8 @@ index.html            la página (cada sección entre comentarios INICIO / FIN)
 css/estilos.css       estilos y tokens de la marca (arriba de todo, en :root)
 js/main.js            movimiento, WhatsApp, menú, chat del agente IA
 img/                  logo X en vector, ícono iPhone, imagen para compartir, cuadros del video
-video/hero-laptop.mp4 video de la laptop (Higgsfield, Kling 3.0 Pro, 5 s, 1920x1080)
+video/hero-laptop.mp4 video de la laptop para computadora (Higgsfield, Kling 3.0 Pro, 5 s, 1920x1080, 6.6 MB)
+video/hero-laptop-movil.mp4 el mismo video para celular (720 px de ancho, 0.43 MB)
 materiales/           logo, tipografía, referencias e instrucciones (no se publica)
 direccion-de-arte.html hoja de muestra aprobada (no se publica)
 ```
@@ -45,7 +46,7 @@ Secciones, en orden: Portada (zonas 1 a 3), Servicios, Proceso, Demos, Equipo, C
 - **Fotos de los fundadores:** en la sección Equipo, cambia las iniciales por `<img src="img/daniel.jpg" alt="...">` (cuadradas, de unos 300 px).
 - **Demos:** cambia cada `[DEMO REAL]` por una imagen `<img src="img/demo-1.jpg" alt="...">` y llena el giro y el nombre.
 - **Colores y letras:** en `:root`, al inicio de `css/estilos.css`.
-- Después de cambiar CSS o JS, sube el número de `?v=` en `index.html` (hoy `?v=2`) para que los navegadores no muestren la versión vieja.
+- Después de cambiar CSS o JS, sube el número de `?v=` en `index.html` (hoy `?v=3`) para que los navegadores no muestren la versión vieja.
 
 ## De dónde salió cada dato
 
@@ -76,13 +77,24 @@ Secciones, en orden: Portada (zonas 1 a 3), Servicios, Proceso, Demos, Equipo, C
 - [ ] `[DEMO REAL 1, 2 y 3]`: capturas o enlaces de trabajos reales, con giro y nombre.
 - [ ] Fotos de Daniel y César (hoy se ven sus iniciales).
 - [ ] Dominio propio (hoy `becode-eight.vercel.app`). Al cambiarlo, actualiza `og:image` en `index.html`.
-- [ ] El video pesa 6.9 MB. Con una herramienta de compresión (HandBrake, gratis) puede bajar a unos 2 MB sin perder calidad visible.
+- [ ] El video de computadora sigue pesando 6.6 MB (el de celular ya es de 0.43 MB). Para bajarlo a unos 2 MB: `ffmpeg -i video/hero-laptop.mp4 -an -vf "scale=1280:-2" -c:v libx264 -crf 24 -preset slow -pix_fmt yuv420p -movflags +faststart video/hero-laptop-pc.mp4` y cambiar el `data-src` del video en `index.html`. ffmpeg quedó instalado en esta computadora.
 - [ ] Higgsfield: queda 1 crédito. Otro video de 5 s cuesta 8.75 y una imagen 0.25.
 - [ ] Si se genera otro video de la laptop, pedir de nuevo que no aparezca ningún logo en la tapa y quitar `.marco__tapa` si ya no hace falta.
 
 ## Cómo publicar
 
 La carpeta está conectada a GitHub (`natavilla09-alt/BeCode`) y Vercel publica sola cada cambio que se sube a la rama `main`. `materiales/`, `branding/` y `direccion-de-arte.html` no se suben (están en `.gitignore`).
+
+## Celular (≤ 700 px)
+
+- **Video:** `js/main.js` elige `hero-laptop-movil.mp4` en celular y el grande en computadora (`<video data-src data-src-movil>`, sin `<source>`, porque los navegadores ignoran `media` en el video). Con ahorro de datos o con "Reducir movimiento" no se descarga video: se ve el último cuadro con el holograma vivo.
+- **Portada:** contenido centrado en la pantalla, sin hueco abajo.
+- **Servicios compactos:** dibujos a 96 px de alto y menos relleno. La página en celular bajó de 8,661 a unos 7,900 px.
+- **Menú del celular:** pantalla completa con el botón "Cotizar por WhatsApp" y las redes (`.notch__extra`, solo se ve en el menú móvil).
+- **Contacto:** WhatsApp y correo a todo el ancho; Instagram y Facebook lado a lado.
+- **Toque:** pestañas de 44 px; los efectos de hover solo con mouse (`@media (hover:hover)`) y `:active` para el dedo; fondo con `100lvh` para que no salte en iPhone al esconderse la barra; zonas seguras (`env(safe-area-inset-*)`) en la barra y el botón fijo.
+- **Chat del agente IA:** altura mínima de 440 px; con la conversación de paneles solares (la más larga) se cortaba con menos.
+- **En horizontal (844 × 390):** no se rompe nada; los botones de la portada quedan debajo de la primera pantalla.
 
 ## Revisión hecha
 

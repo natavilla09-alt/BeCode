@@ -13,6 +13,8 @@
   const $$ = (s, c = d) => [...c.querySelectorAll(s)];
   const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const FINE = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const SAVE_DATA = !!(navigator.connection && navigator.connection.saveData); // modo ahorro de datos
+  const MOVIL = matchMedia('(max-width: 700px)').matches;
   const hasGSAP = typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
   const safe = (fn) => { try { fn(); } catch (e) { console.warn('[diverx]', e); } };
 
@@ -67,6 +69,8 @@
       lenis && (open ? lenis.stop() : lenis.start());
     });
     d.addEventListener('keydown', (e) => { if (e.key === 'Escape' && notch.classList.contains('is-open')) closeMenu(); });
+    // Los enlaces de WhatsApp y redes del menú también lo cierran
+    $$('.notch__extra a').forEach((a) => a.addEventListener('click', closeMenu));
   });
 
   // Anclas suaves
@@ -194,7 +198,14 @@
   const video = $('#laptop');
   const marco = $('#marco');
   const showEnd = () => marco.classList.add('is-end');
-  safe(() => { video.addEventListener('ended', showEnd); video.addEventListener('error', showEnd); });
+  // Con menos movimiento o ahorro de datos no se descarga el video: se ve el último cuadro con el holograma vivo
+  const canVideo = !RM && !SAVE_DATA;
+  safe(() => {
+    video.addEventListener('ended', showEnd);
+    video.addEventListener('error', showEnd);
+    if (canVideo) { video.src = MOVIL ? video.dataset.srcMovil : video.dataset.src; video.load(); }
+    else showEnd();
+  });
 
   // Parche sobre la tapa cerrada: se quita cuando la tapa empieza a abrirse (1.15 s)
   safe(() => {
@@ -207,7 +218,7 @@
     video.addEventListener('seeked', check);
   });
 
-  if (!hasGSAP) { safe(() => { if (RM) showEnd(); else video.play().catch(showEnd); }); return; }
+  if (!hasGSAP) { safe(() => { if (canVideo) video.play().catch(showEnd); }); return; }
 
   // ---------- 4. Efectos de mouse (solo con mouse de verdad) ----------
   if (FINE) safe(() => {
@@ -322,8 +333,7 @@
   // ---------- 7. Arranque: la firma en la portada ----------
   let tl = null;
   const intro = () => safe(() => {
-    marco.classList.remove('is-end');
-    video.play().catch(showEnd);
+    if (canVideo) { marco.classList.remove('is-end'); video.play().catch(showEnd); }
     tl = gsap.timeline({ defaults: { ease: M.ease, duration: M.dur } });
     tl.fromTo('#marco', { opacity: 0, scale: 0.94, clipPath: 'inset(48% 0 48% 0 round 8px)' },
                         { opacity: 1, scale: 1, clipPath: 'inset(0% 0 0% 0 round 8px)', duration: 1.2, ease: M.easeIO }, 0)
