@@ -56,9 +56,14 @@ Contrastes medidos el 15 nov 2026: todos los pares de texto pasan AA. El único 
 - **WhatsApp:** `js/main.js`, constante `WA` (hoy `529381398816`). El mensaje de cada botón está en su atributo `data-wa` dentro de `index.html`.
 - **Correo, Instagram y Facebook:** sección Contacto de `index.html`.
 - **Fotos de los fundadores:** en la sección Equipo, cambia las iniciales por `<img src="img/daniel.jpg" alt="...">` (cuadradas, de unos 300 px).
-- **Demos:** cambia cada `[DEMO REAL]` por una imagen `<img src="img/demo-1.jpg" alt="...">` y llena el giro y el nombre.
+- **Demos (visor):** las páginas se ven funcionando dentro de la web, en un marco de navegador. Cada pestaña `.visor__tab` de `index.html` lleva `href`, `data-src` (la dirección), `data-titulo` y su giro y nombre. Para cambiar una página, edita esos datos; para agregar más, copia una pestaña (con 3 pestañas la fila usa `repeat(3,1fr)` en `.visor__tabs`; cambia ese número si pasan de 3).
+  - La página que se muestre tiene que permitir verse dentro de otra web. Se comprueba así (no debe salir `X-Frame-Options` ni `frame-ancestors` en `Content-Security-Policy`): `(Invoke-WebRequest -UseBasicParsing https://sitio.com).Headers`.
+  - Solo se descarga la primera página cuando la sección está por verse, y cada una al tocar su pestaña. En celular la página se muestra en su versión de celular (420 px de ancho virtual).
+  - Hasta tocar "Toca para probar la página" el visor no atrapa el scroll: la rueda y el dedo siguen moviendo la web de DiverX. "Salir" devuelve el control.
+  - Sin JavaScript el marco se oculta y las pestañas funcionan como enlaces que abren cada página en otra pestaña.
+  - El navegador muestra un aviso en la consola por usar `allow-scripts` y `allow-same-origin` juntos en el `sandbox` del marco. Es esperado: las páginas son de otro dominio y lo necesitan para funcionar normal.
 - **Colores y letras:** en `:root`, al inicio de `css/estilos.css`.
-- Después de cambiar CSS o JS, sube el número de `?v=` en `index.html` (hoy CSS `?v=5` y JS `?v=4`) para que los navegadores no muestren la versión vieja.
+- Después de cambiar CSS o JS, sube el número de `?v=` en `index.html` (hoy CSS `?v=6` y JS `?v=5`) para que los navegadores no muestren la versión vieja.
 
 ## De dónde salió cada dato
 
@@ -67,6 +72,7 @@ Contrastes medidos el 15 nov 2026: todos los pares de texto pasan AA. El único 
 | Textos de servicios, proceso, concepto y redes | `PAGINA WEB.md` y el documento de Word de la carpeta `DiverX website` | 15 nov 2026 |
 | WhatsApp | Confirmado por César en el chat | 15 nov 2026 |
 | Correo diverx.mexico@gmail.com | Dado por César en el chat | 15 nov 2026 |
+| Páginas de Demos: rejon-dental.vercel.app, jm-salud-integral.vercel.app, solargreen-merida.vercel.app | Enlaces dados por César en el chat; se comprobó que permiten verse dentro de otra web | 18 nov 2026 |
 | Rojo `#C90031` | Medido en `LOGO DIVERX.png` | 15 nov 2026 |
 | Chat del agente IA | Web anterior de BeCode (ejemplos ilustrativos, no clientes reales) | — |
 
@@ -86,7 +92,7 @@ Contrastes medidos el 15 nov 2026: todos los pares de texto pasan AA. El único 
 
 ## Pendientes (no publicar con marcadores amarillos sin decidirlo)
 
-- [ ] `[DEMO REAL 1, 2 y 3]`: capturas o enlaces de trabajos reales, con giro y nombre.
+- [ ] Confirmar con los dueños de Consultorio Dental Rejón, JM Salud Integral y SolarGreen Mérida que están de acuerdo en que sus páginas se muestren en la sección Demos (la skill pide permiso para mostrar trabajos de clientes).
 - [ ] Fotos de Daniel y César (hoy se ven sus iniciales).
 - [ ] Dominio propio (hoy `becode-eight.vercel.app`). Al cambiarlo, actualiza `og:image` en `index.html`.
 - [ ] El video de computadora sigue pesando 6.6 MB (el de celular ya es de 0.43 MB). Para bajarlo a unos 2 MB: `ffmpeg -i video/hero-laptop.mp4 -an -vf "scale=1280:-2" -c:v libx264 -crf 24 -preset slow -pix_fmt yuv420p -movflags +faststart video/hero-laptop-pc.mp4` y cambiar el `data-src` del video en `index.html`. ffmpeg quedó instalado en esta computadora.

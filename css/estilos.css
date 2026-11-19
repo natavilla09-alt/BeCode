@@ -84,9 +84,9 @@ html.lenis,html.lenis body{height:auto}
 .seccion--clara{--ink:#0A0A0A;--muted:#46464C;--line:rgba(10,10,10,.16);--btn-line:rgba(10,10,10,.38);--accent-text:#C90031;background:var(--paper);color:var(--ink)}
 .seccion--negra{--ink:#F4F4F2;--muted:#9A9AA0;--line:rgba(255,255,255,.10);--btn-line:rgba(255,255,255,.28);--accent-text:#FF3355;background:var(--black);color:var(--ink)}
 /* Lo que siempre es oscuro (tarjetas, marcos, teléfono), aunque la sección sea blanca */
-.tarjeta,.fundador,.canales a,.demo__pantalla,.telefono{--ink:#F4F4F2;--muted:#9A9AA0;--line:rgba(255,255,255,.10);--accent-text:#FF3355;color:var(--ink)}
+.tarjeta,.fundador,.canales a,.telefono{--ink:#F4F4F2;--muted:#9A9AA0;--line:rgba(255,255,255,.10);--accent-text:#FF3355;color:var(--ink)}
 /* La letra condensada junta mucho las palabras: un poco más de espacio entre ellas */
-.h2,.lema,.tarjeta h3,.paso h3,.demo__nombre,.fundador h3{word-spacing:.14em}
+.h2,.lema,.tarjeta h3,.paso h3,.fundador h3{word-spacing:.14em}
 /* Aire para SplitText con máscara: las letras no se recortan */
 .h2 .linea-split{padding-bottom:.12em;margin-bottom:-.12em}
 .linea-split-mask{overflow-clip-margin:.16em}  /* los acentos de las mayúsculas (É, Ó, Ú) no se cortan */
@@ -313,16 +313,40 @@ html.lenis,html.lenis body{height:auto}
 .paso h3{margin-top:8px;font:900 clamp(24px,2.1vw,30px)/.95 var(--font-display);font-stretch:var(--st-d);text-transform:uppercase}
 .paso p{font:400 13.5px/1.65 var(--font-mono);color:var(--muted)}
 
-/* ---------- Demos ---------- */
-.demos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.demo{margin:0;display:flex;flex-direction:column;gap:12px}
-.demo__pantalla{position:relative;aspect-ratio:4/3;border-radius:var(--r-md);border:1px solid var(--line-red);background:
-  linear-gradient(var(--surface-2),var(--surface-2)) top/100% 28px no-repeat,
-  radial-gradient(60% 60% at 50% 60%,rgba(201,0,49,.18),transparent 70%),var(--surface);display:grid;place-items:center;padding:40px 16px 16px;text-align:center;overflow:hidden}
-.demo__pantalla::before{content:"";position:absolute;top:11px;left:12px;width:6px;height:6px;border-radius:50%;background:var(--red);box-shadow:10px 0 0 rgba(255,255,255,.25),20px 0 0 rgba(255,255,255,.25)}
-.demo figcaption{display:flex;flex-direction:column;gap:6px}
-.demo__giro{font:500 11px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent-text)}
-.demo__nombre{font:900 clamp(24px,2.3vw,32px)/.95 var(--font-display);font-stretch:var(--st-d);text-transform:uppercase}
+/* ---------- Demos: visor con las páginas reales funcionando dentro de la página ---------- */
+.visor{display:grid;gap:16px}
+.visor__tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.visor__tab{display:flex;flex-direction:column;gap:6px;padding:18px 20px 20px;border:1.5px solid var(--ink);border-radius:var(--r-md);color:var(--ink);background:transparent;transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease)}
+.visor__num{font:500 12px/1 var(--font-mono);letter-spacing:.12em;color:var(--accent-text)}
+.visor__giro{font:500 11px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;opacity:.72}
+.visor__nombre{font:900 clamp(24px,2.5vw,34px)/.95 var(--font-display);font-stretch:var(--st-d);text-transform:uppercase;word-spacing:.14em}
+.visor__tab.is-active{background:var(--black);border-color:var(--black);color:#F4F4F2;--accent-text:#FF3355}
+@media (hover:hover){.visor__tab:not(.is-active):hover{border-color:var(--red);color:var(--red)}}
+.visor__tab:not(.is-active):active{border-color:var(--red);color:var(--red)}
+
+.visor__ventana{border-radius:var(--r-md);overflow:hidden;background:var(--black);border:1px solid var(--black);box-shadow:0 40px 90px -50px rgba(10,10,10,.75)}
+.visor__barra{display:flex;align-items:center;gap:14px;min-height:48px;padding:2px 8px 2px 16px;background:#141417;color:#F4F4F2;border-bottom:1px solid rgba(255,255,255,.08)}
+.visor__puntos{display:flex;gap:6px;flex:none}
+.visor__puntos i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.25)}
+.visor__puntos i:first-child{background:var(--red)}
+.visor__url{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.07);font:500 12px/1 var(--font-mono);color:#CFCFD4}
+.visor__abrir{flex:none;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 10px;font:600 13px/1 var(--font-ui);color:#fff;border-radius:var(--r-pill)}
+@media (hover:hover){.visor__abrir:hover{color:var(--red-on-dark)}}
+
+/* La página real se dibuja a su tamaño normal (escritorio o celular) y se reduce para caber */
+.visor__pantalla{position:relative;aspect-ratio:16/10;background:#fff;overflow:hidden}
+.visor__pantalla iframe{position:absolute;left:0;top:0;border:0;background:#fff;transform-origin:0 0;pointer-events:none}
+.visor__pantalla.is-live iframe{pointer-events:auto}
+.visor__cargando{position:absolute;inset:0;z-index:1;display:grid;place-items:center;background:var(--black);color:#9A9AA0;font:500 12px/1 var(--font-mono);letter-spacing:.18em;text-transform:uppercase;transition:opacity .5s var(--ease)}
+.visor__pantalla.is-ready .visor__cargando{opacity:0;pointer-events:none}
+/* Capa que deja bajar por la página sin quedar atrapado dentro del visor */
+.visor__activar{position:absolute;inset:0;z-index:2;display:flex;align-items:flex-end;justify-content:center;padding:0 0 22px;border:0;background:linear-gradient(0deg,rgba(10,10,10,.34),transparent 34%);cursor:pointer}
+.visor__pill{padding:13px 20px;border-radius:var(--r-pill);background:var(--red);color:#fff;font:600 14px/1 var(--font-ui);box-shadow:0 12px 30px -12px rgba(0,0,0,.6);transition:transform .3s var(--ease),background .3s var(--ease)}
+@media (hover:hover){.visor__activar:hover .visor__pill{background:var(--red-hi);transform:translateY(-2px)}}
+.visor__pantalla.is-live .visor__activar{display:none}
+.visor__salir{display:none;position:absolute;top:10px;right:10px;z-index:3;align-items:center;min-height:44px;padding:0 18px;border-radius:var(--r-pill);border:1px solid rgba(255,255,255,.35);background:var(--black);color:#fff;font:600 13px/1 var(--font-ui);cursor:pointer}
+.visor__pantalla.is-live .visor__salir{display:inline-flex}
+.no-js .visor__ventana{display:none}
 
 /* ---------- Equipo: bloque negro | bloque rojo con la X en negro (como en tu ejemplo) ---------- */
 .seccion--equipo{position:relative;display:grid;grid-template-columns:56fr 44fr;overflow:hidden}
@@ -381,7 +405,6 @@ html.lenis,html.lenis body{height:auto}
   .bento{grid-template-columns:repeat(2,1fr);grid-template-areas:"ia ia" "web lealtad" "nfc redes" "sistema sistema"}
   .linea{grid-template-columns:repeat(3,1fr);row-gap:40px}
   .linea__trazo{display:none}
-  .demos{grid-template-columns:repeat(2,1fr)}
   .seccion--equipo{grid-template-columns:1fr}
   .equipo__bloque--negro,.equipo__bloque--rojo{padding-left:var(--gutter);padding-right:var(--gutter)}
   .canales{grid-template-columns:repeat(2,1fr)}
@@ -412,7 +435,12 @@ html.lenis,html.lenis body{height:auto}
   .paso__nodo{position:absolute;left:-76px;top:0}
   .paso{padding-right:8px}
   .paso h3{margin-top:0;text-wrap:balance}
-  .demos{grid-template-columns:1fr}
+  /* Visor en celular: pestañas en lista y la página se ve en su versión de celular */
+  .visor__tabs{grid-template-columns:1fr;gap:8px}
+  .visor__tab{display:grid;grid-template-columns:auto 1fr;grid-template-areas:"num giro" "nombre nombre";column-gap:12px;row-gap:4px;padding:14px 16px 16px}
+  .visor__num{grid-area:num}.visor__giro{grid-area:giro}.visor__nombre{grid-area:nombre;font-size:26px}
+  .visor__pantalla{aspect-ratio:3/4}
+  .visor__url{font-size:11px}
   .canales{grid-template-columns:1fr 1fr}
   .canales li:nth-child(-n+2){grid-column:1/-1}
   .canales a{padding:16px 14px}

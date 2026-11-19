@@ -194,6 +194,53 @@
     }, { threshold: 0.35 }).observe($('.telefono'));
   });
 
+  // Demos: visor con las páginas reales funcionando dentro de esta página
+  safe(() => {
+    const visor = $('#visor');
+    if (!visor) return;
+    const tabs = $$('.visor__tab', visor);
+    const pantalla = $('#visorPantalla');
+    const frame = $('#visorFrame');
+    const url = $('#visorUrl');
+    const abrir = $('#visorAbrir');
+    let cargado = false;
+
+    // La página se dibuja a su tamaño normal (escritorio o celular) y se reduce para caber en el marco
+    const ajustar = () => {
+      const w = pantalla.clientWidth, h = pantalla.clientHeight;
+      if (!w) return;
+      const vw = w >= 700 ? 1280 : 420;
+      const s = w / vw;
+      frame.style.width = `${vw}px`;
+      frame.style.height = `${h / s}px`;
+      frame.style.transform = `scale(${s})`;
+    };
+    const mostrar = (tab) => {
+      tabs.forEach((t) => { const on = t === tab; t.classList.toggle('is-active', on); t.setAttribute('aria-selected', String(on)); });
+      const src = tab.dataset.src;
+      pantalla.classList.remove('is-ready', 'is-live');
+      frame.title = tab.dataset.titulo;
+      url.textContent = src.replace(/^https?:\/\//, '').replace(/\/$/, '');
+      abrir.href = src;
+      frame.src = src;
+    };
+    frame.addEventListener('load', () => { if (frame.getAttribute('src')) pantalla.classList.add('is-ready'); });
+    tabs.forEach((t) => t.addEventListener('click', (e) => { e.preventDefault(); cargado = true; mostrar(t); }));
+    // Hasta que se toca "probar", la rueda y el dedo siguen moviendo esta página y no la del visor
+    $('#visorActivar').addEventListener('click', () => pantalla.classList.add('is-live'));
+    $('#visorSalir').addEventListener('click', () => pantalla.classList.remove('is-live'));
+
+    ajustar();
+    if ('ResizeObserver' in window) new ResizeObserver(ajustar).observe(pantalla);
+    else window.addEventListener('resize', ajustar);
+
+    // La primera página se carga cuando la sección está por verse: no gasta datos antes
+    const cargar = () => { if (!cargado) { cargado = true; mostrar(tabs[0]); } };
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([e], io) => { if (e.isIntersecting) { cargar(); io.disconnect(); } }, { rootMargin: '600px 0px' }).observe(visor);
+    } else cargar();
+  });
+
   // Video de la portada
   const video = $('#laptop');
   const marco = $('#marco');
@@ -317,16 +364,6 @@
       trigger: '#hero', start: 'top top', end: 'bottom top',
       onLeave: () => holo.classList.add('holo--pausa'),
       onEnterBack: () => holo.classList.remove('holo--pausa'),
-    });
-  });
-
-  // Demos: cada marco se abre como cortina
-  safe(() => {
-    $$('.demo__pantalla').forEach((el) => {
-      gsap.fromTo(el, { clipPath: 'inset(0 0 100% 0)' }, {
-        clipPath: 'inset(0 0 0% 0)', duration: 1.1, ease: M.easeIO,
-        scrollTrigger: { trigger: el, start: 'top 85%', once: true },
-      });
     });
   });
 

@@ -26,7 +26,7 @@
   <link rel="preload" as="image" href="img/laptop-inicio.jpg">
   <link rel="preload" as="image" href="img/fondo-brutalista.jpg" media="(min-width: 701px)">
   <link rel="preload" as="image" href="img/fondo-brutalista-movil.jpg" media="(max-width: 700px)">
-  <link rel="stylesheet" href="css/estilos.css?v=5">
+  <link rel="stylesheet" href="css/estilos.css?v=6">
 </head>
 <body>
 
@@ -252,19 +252,34 @@
       <h2 class="h2" data-split>Así se ve trabajar con DiverX</h2>
     </header>
 
-    <div class="demos">
-      <figure class="demo" data-reveal>
-        <div class="demo__pantalla"><span class="pendiente">[DEMO REAL 1: CAPTURA O ENLACE]</span></div>
-        <figcaption><span class="demo__giro">[GIRO]</span><span class="demo__nombre">[NOMBRE DEL PROYECTO]</span></figcaption>
-      </figure>
-      <figure class="demo" data-reveal>
-        <div class="demo__pantalla"><span class="pendiente">[DEMO REAL 2: CAPTURA O ENLACE]</span></div>
-        <figcaption><span class="demo__giro">[GIRO]</span><span class="demo__nombre">[NOMBRE DEL PROYECTO]</span></figcaption>
-      </figure>
-      <figure class="demo" data-reveal>
-        <div class="demo__pantalla"><span class="pendiente">[DEMO REAL 3: CAPTURA O ENLACE]</span></div>
-        <figcaption><span class="demo__giro">[GIRO]</span><span class="demo__nombre">[NOMBRE DEL PROYECTO]</span></figcaption>
-      </figure>
+    <!-- Visor: las páginas reales se ven funcionando dentro de esta página.
+         Sin JavaScript, cada pestaña es un enlace que abre la página en otra pestaña. -->
+    <div class="visor" id="visor" data-reveal>
+      <div class="visor__tabs" role="tablist" aria-label="Páginas que hemos hecho">
+        <a class="visor__tab is-active" role="tab" aria-selected="true" aria-controls="visorPantalla" href="https://rejon-dental.vercel.app/" target="_blank" rel="noopener" data-src="https://rejon-dental.vercel.app/" data-titulo="Consultorio Dental Rejón">
+          <span class="visor__num">01</span><span class="visor__giro">Clínica dental</span><span class="visor__nombre">Consultorio Dental Rejón</span>
+        </a>
+        <a class="visor__tab" role="tab" aria-selected="false" aria-controls="visorPantalla" href="https://jm-salud-integral.vercel.app/" target="_blank" rel="noopener" data-src="https://jm-salud-integral.vercel.app/" data-titulo="JM Salud Integral">
+          <span class="visor__num">02</span><span class="visor__giro">Consultorio médico</span><span class="visor__nombre">JM Salud Integral</span>
+        </a>
+        <a class="visor__tab" role="tab" aria-selected="false" aria-controls="visorPantalla" href="https://solargreen-merida.vercel.app/" target="_blank" rel="noopener" data-src="https://solargreen-merida.vercel.app/" data-titulo="SolarGreen Mérida">
+          <span class="visor__num">03</span><span class="visor__giro">Paneles solares</span><span class="visor__nombre">SolarGreen Mérida</span>
+        </a>
+      </div>
+
+      <div class="visor__ventana">
+        <div class="visor__barra">
+          <span class="visor__puntos" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="visor__url" id="visorUrl">rejon-dental.vercel.app</span>
+          <a class="visor__abrir" id="visorAbrir" href="https://rejon-dental.vercel.app/" target="_blank" rel="noopener">Abrir completa <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="visor__pantalla" id="visorPantalla" role="tabpanel" data-lenis-prevent>
+          <iframe id="visorFrame" title="Consultorio Dental Rejón" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox" referrerpolicy="strict-origin-when-cross-origin" tabindex="-1"></iframe>
+          <div class="visor__cargando" aria-hidden="true">Cargando</div>
+          <button type="button" class="visor__activar" id="visorActivar" aria-label="Activar la página para probarla"><span class="visor__pill">Toca para probar la página</span></button>
+          <button type="button" class="visor__salir" id="visorSalir">Salir</button>
+        </div>
+      </div>
     </div>
 
     <div class="seccion__cta" data-reveal>
@@ -359,6 +374,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js" defer></script>
-<script src="js/main.js?v=4" defer></script>
+<script src="js/main.js?v=5" defer></script>
 </body>
 </html>
